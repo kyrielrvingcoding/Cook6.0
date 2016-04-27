@@ -9,6 +9,7 @@
 #import "RecipeListTableViewController.h"
 #import "HomeMoreCookBooksModel.h"
 #import "HomeMoreCookBooksModelCell.h"
+#import "NewRecipeDetailController.h"
 
 @interface RecipeListTableViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -100,7 +101,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NewRecipeDetailController *recipeDetailVC = [[NewRecipeDetailController alloc] init];
+    HomeMoreCookBooksModel *cookbooksModel = self.dataArray[indexPath.row];
+    recipeDetailVC.ID = cookbooksModel.ID;
+    [self.navigationController pushViewController:recipeDetailVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

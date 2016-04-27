@@ -15,6 +15,7 @@
 #import "MyselfUserInfoViewController.h"
 #import "HomeNewUserModel.h"
 #import "LatestDevelopmentViewController.h"
+#import "NewRecipeDetailController.h"
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -100,7 +101,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NewRecipeDetailController *detailVC = [[NewRecipeDetailController alloc] init];
+    detailVC.ID = [_hometableView.moreCookbooksArray[indexPath.row] ID];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

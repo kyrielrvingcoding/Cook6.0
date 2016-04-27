@@ -15,6 +15,7 @@
 @interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) void (^refreshData)();
 
 @end
 
@@ -24,8 +25,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor redColor];
     [self createTableView];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(change)];
-//    [self.view addGestureRecognizer:tap];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLoginMessage) name:@"refreshLoginMessage" object:nil];
+}
+
+- (void)refreshLoginMessage {
+    _refreshData();
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,6 +51,9 @@
     MyselfHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfHeaderView" owner:nil options:nil]lastObject];
     [headerView requestData];
     self.tableView.tableHeaderView = headerView;
+    _refreshData = ^{
+       [headerView requestData];
+    };
     headerView.judgeLoginStatus = ^(UIButton *button) {
         if ([[UserInofManager getSessionID] isEqualToString:@""]) {
             CYloginRegisterViewController *loginVC = [[CYloginRegisterViewController alloc] init];
@@ -95,8 +103,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CYloginRegisterViewController *cy = [[CYloginRegisterViewController alloc] initWithNibName:@"CYloginRegisterViewController" bundle:nil];
-    [self presentViewController:cy animated:YES completion:nil];
+    if ([[UserInofManager getSessionID] isEqualToString:@""]) {
+        CYloginRegisterViewController *cy = [[CYloginRegisterViewController alloc] initWithNibName:@"CYloginRegisterViewController" bundle:nil];
+        [self presentViewController:cy animated:YES completion:nil];
+    }
+    
 }
 
 //- (void)change {

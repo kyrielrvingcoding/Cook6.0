@@ -144,7 +144,7 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
 //                    NSLog(@"执行跳转指令%@",dataDict);
                     [UserInofManager conserveSessionID:dataDict[@"sessionId"]];
-                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshLoginMessage" object:nil];
                 }];
             } else {
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width,self.view.frame.size.height / 2 , 300, 40)];
@@ -294,8 +294,9 @@
             } else {
                 button.enabled = YES;
                 //跳转
-                NSLog(@"%@",dicData);
+//                NSLog(@"%@",dicData);
                 [UserInofManager conserveSessionID:dicData[@"sessionId"]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshLoginMessage" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
                   });

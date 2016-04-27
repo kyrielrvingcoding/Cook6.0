@@ -15,7 +15,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.frame = CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT * 0.4);
-//        [self requestData];
     }
     return self;
 }
@@ -44,12 +43,14 @@
 
 #pragma mark ----- 我的背景和头像 --------
 - (void)createBackgroundViewAndHeaderView:(UserLoginModel *)model {
+    if (model.nickname) {
+        [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.profileImageUrl]];
+        [_headerImageview sd_setImageWithURL:[NSURL URLWithString:model.profileImageUrl]];
+        _nicknameLabel.text = model.nickname;
+        _jionTimeLabel.text = [self figuringoutTimesFromNowWith:model.joinDate];
+        _addressLabel.text = model.residence;
+    }
     
-    [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.profileImageUrl]];
-    [_headerImageview sd_setImageWithURL:[NSURL URLWithString:model.profileImageUrl]];
-    _nicknameLabel.text = model.nickname;
-    _jionTimeLabel.text = model.joinDate;
-    _addressLabel.text = model.residence;
 //    _careLabel.text = model
     //添加模糊层
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
@@ -78,6 +79,23 @@
 //轻点头像，跳转到设置到个人设置界面(没有登录时，跳转到登录)
 - (void)personalSet:(UITapGestureRecognizer *)tap {
     
+}
+
+- (NSString *)figuringoutTimesFromNowWith:(NSString *)time {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [formatter dateFromString:time];
+    NSDate *nowDate = [NSDate date];
+    NSTimeInterval seconds = [nowDate timeIntervalSinceDate:date];
+    NSInteger hours = (NSInteger)seconds / (60 * 60);
+    NSInteger days = (NSInteger)hours / 24;
+    NSString *timeStr = nil;
+    if (hours < 24) {
+        timeStr = [NSString stringWithFormat:@"已加入%ld小时", hours];
+    } else {
+        timeStr = [NSString stringWithFormat:@"已加入%ld天", days];
+    }
+    return timeStr;
 }
 
 @end

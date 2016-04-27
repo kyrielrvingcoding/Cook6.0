@@ -9,6 +9,8 @@
 #import "LatestDevelopmentViewController.h"
 #import "LatestDevelopmentModel.h"
 #import "LatestDevelopmentModelCell.h"
+#import "NewRecipeDetailController.h"
+#import "WorksPhotoController.h"
 
 @interface LatestDevelopmentViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -123,7 +125,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    LatestDevelopmentModel *latestModel = self.dataArray[indexPath.row];
+    if ([latestModel.actionTag isEqualToString:@"4"]) {
+        NewRecipeDetailController *detailVC = [[NewRecipeDetailController alloc] init];
+        detailVC.ID = latestModel.recipeModel.ID;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    } else {
+        WorksPhotoController *worksVC = [[WorksPhotoController alloc] init];
+        worksVC.WorkWaterfallModel = latestModel.newworkModel;
+        [self.navigationController pushViewController:worksVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

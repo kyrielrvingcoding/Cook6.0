@@ -101,9 +101,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSURL *url = [NSURL URLWithString:[self.dataArray[indexPath.row] imageUrl]];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
-    NSLog(@"%f------%f", image.size.width, image.size.height);
+//    NSURL *url = [NSURL URLWithString:[self.dataArray[indexPath.row] imageUrl]];
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+//    NSLog(@"%f------%f", image.size.width, image.size.height);
 
     NewRecipeDetailController *recipeDetailVC = [[NewRecipeDetailController alloc] init];
     RecipeReferrerModel *referModel = self.dataArray[indexPath.row];
