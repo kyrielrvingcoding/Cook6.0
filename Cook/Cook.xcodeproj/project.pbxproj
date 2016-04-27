@@ -11,7 +11,6 @@
 		1C031F381CCF512900513257 /* UserInofManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F361CCF512900513257 /* UserInofManager.m */; };
 		1C031F401CCF513400513257 /* MyselfHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F3A1CCF513400513257 /* MyselfHeaderView.m */; };
 		1C031F411CCF513400513257 /* MyselfHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C031F3B1CCF513400513257 /* MyselfHeaderView.xib */; };
-		1C031F491CCF513E00513257 /* MyselfUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F461CCF513E00513257 /* MyselfUserInfoViewController.m */; };
 		1C031F4A1CCF513E00513257 /* MyselfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F481CCF513E00513257 /* MyselfViewController.m */; };
 		1C031F4D1CCF683400513257 /* UserLoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F4C1CCF683400513257 /* UserLoginModel.m */; };
 		1C031F501CCF8DCD00513257 /* PraiseAndVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F4F1CCF8DCD00513257 /* PraiseAndVisitViewController.m */; };
@@ -109,6 +108,13 @@
 		77A8CF741CCB224800A5CB46 /* BaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8CF6F1CCB224800A5CB46 /* BaseCollectionViewCell.xib */; };
 		77A8CF751CCB224800A5CB46 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CF711CCB224800A5CB46 /* BaseTableViewCell.m */; };
 		77A8CF761CCB224800A5CB46 /* BaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8CF721CCB224800A5CB46 /* BaseTableViewCell.xib */; };
+		77F4BFCB1CD0D5B900991545 /* YYCommentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F4BFC71CD0D5B900991545 /* YYCommentControl.m */; };
+		77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */; };
+		77F4BFCD1CD0D5B900991545 /* CommnetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F4BFCA1CD0D5B900991545 /* CommnetButton.m */; };
+		797337381CD0DC390068B2BE /* MyselfUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */; };
+		7973373C1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */; };
+		7973373D1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */; };
+		797337401CD0DD300068B2BE /* MyselfUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */; };
 		79A6C33E1CCFA0D1008A3F23 /* HomeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */; };
 		79A6C33F1CCFA0D1008A3F23 /* HomeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */; };
 		79E45ECE1CCB536C004F4234 /* HomeAdvertsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E45ECD1CCB536C004F4234 /* HomeAdvertsModel.m */; };
@@ -149,8 +155,6 @@
 		1C031F391CCF513400513257 /* MyselfHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfHeaderView.h; sourceTree = "<group>"; };
 		1C031F3A1CCF513400513257 /* MyselfHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfHeaderView.m; sourceTree = "<group>"; };
 		1C031F3B1CCF513400513257 /* MyselfHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfHeaderView.xib; sourceTree = "<group>"; };
-		1C031F451CCF513E00513257 /* MyselfUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoViewController.h; sourceTree = "<group>"; };
-		1C031F461CCF513E00513257 /* MyselfUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoViewController.m; sourceTree = "<group>"; };
 		1C031F471CCF513E00513257 /* MyselfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfViewController.h; sourceTree = "<group>"; };
 		1C031F481CCF513E00513257 /* MyselfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfViewController.m; sourceTree = "<group>"; };
 		1C031F4B1CCF683400513257 /* UserLoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginModel.h; sourceTree = "<group>"; };
@@ -334,6 +338,18 @@
 		77A8CF701CCB224800A5CB46 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		77A8CF711CCB224800A5CB46 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		77A8CF721CCB224800A5CB46 /* BaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseTableViewCell.xib; sourceTree = "<group>"; };
+		77F4BFC61CD0D5B900991545 /* YYCommentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCommentControl.h; sourceTree = "<group>"; };
+		77F4BFC71CD0D5B900991545 /* YYCommentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCommentControl.m; sourceTree = "<group>"; };
+		77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCommentControl.xib; sourceTree = "<group>"; };
+		77F4BFC91CD0D5B900991545 /* CommnetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommnetButton.h; sourceTree = "<group>"; };
+		77F4BFCA1CD0D5B900991545 /* CommnetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommnetButton.m; sourceTree = "<group>"; };
+		797337361CD0DC390068B2BE /* MyselfUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoModel.h; sourceTree = "<group>"; };
+		797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoModel.m; sourceTree = "<group>"; };
+		797337391CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoHeaderView.h; sourceTree = "<group>"; };
+		7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoHeaderView.m; sourceTree = "<group>"; };
+		7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfUserInfoHeaderView.xib; sourceTree = "<group>"; };
+		7973373E1CD0DD300068B2BE /* MyselfUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoViewController.h; sourceTree = "<group>"; };
+		7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoViewController.m; sourceTree = "<group>"; };
 		79A6C33B1CCFA0D1008A3F23 /* HomeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeWebViewController.h; sourceTree = "<group>"; };
 		79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeWebViewController.m; sourceTree = "<group>"; };
 		79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWebViewController.xib; sourceTree = "<group>"; };
@@ -401,6 +417,8 @@
 				1C031F341CCF512900513257 /* MyselfIDModel.m */,
 				1C031F351CCF512900513257 /* UserInofManager.h */,
 				1C031F361CCF512900513257 /* UserInofManager.m */,
+				797337361CD0DC390068B2BE /* MyselfUserInfoModel.h */,
+				797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,6 +434,9 @@
 				1C031F511CCF8F3800513257 /* PraiseAndVisitTableViewCell.h */,
 				1C031F521CCF8F3800513257 /* PraiseAndVisitTableViewCell.m */,
 				1C031F541CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib */,
+				797337391CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.h */,
+				7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */,
+				7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,8 +444,8 @@
 		1C031F321CCF50FF00513257 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1C031F451CCF513E00513257 /* MyselfUserInfoViewController.h */,
-				1C031F461CCF513E00513257 /* MyselfUserInfoViewController.m */,
+				7973373E1CD0DD300068B2BE /* MyselfUserInfoViewController.h */,
+				7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */,
 				1C031F471CCF513E00513257 /* MyselfViewController.h */,
 				1C031F481CCF513E00513257 /* MyselfViewController.m */,
 				1C031F4E1CCF8DCD00513257 /* PraiseAndVisitViewController.h */,
@@ -606,6 +627,11 @@
 				77A8CF3B1CCB08C500A5CB46 /* URLHeaderDefine.h */,
 				1C9A69FE1CD09BBA00162F31 /* ShowBigImage.h */,
 				1C9A69FF1CD09BBA00162F31 /* ShowBigImage.m */,
+				77F4BFC61CD0D5B900991545 /* YYCommentControl.h */,
+				77F4BFC71CD0D5B900991545 /* YYCommentControl.m */,
+				77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */,
+				77F4BFC91CD0D5B900991545 /* CommnetButton.h */,
+				77F4BFCA1CD0D5B900991545 /* CommnetButton.m */,
 				77A8CEE71CCB074900A5CB46 /* Category */,
 				77A8CF3F1CCB09CF00A5CB46 /* PrefixHeader.pch */,
 			);
@@ -984,6 +1010,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7973373D1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib in Resources */,
 				1C9A69FA1CD09AE700162F31 /* WorksPhotoCommentCell.xib in Resources */,
 				773AE93C1CCF5B420000A46C /* RecipeDetailHeaderView.xib in Resources */,
 				77A8CF761CCB224800A5CB46 /* BaseTableViewCell.xib in Resources */,
@@ -999,6 +1026,7 @@
 				77A8CF741CCB224800A5CB46 /* BaseCollectionViewCell.xib in Resources */,
 				77A8CEB61CCB042F00A5CB46 /* Main.storyboard in Resources */,
 				1C9A69F81CD09AE700162F31 /* WorksPhotoHeaderView.xib in Resources */,
+				77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */,
 				773AE91B1CCF5A4E0000A46C /* PlayView.xib in Resources */,
 				773AE93A1CCF5B420000A46C /* NewRecipeDetailStepCell.xib in Resources */,
 				773AE9361CCF5B420000A46C /* RecipeDetailFooterView.xib in Resources */,
@@ -1084,6 +1112,7 @@
 				79EB61A51CCE182600A6E23D /* HomeMoreCookBooksModelCell.m in Sources */,
 				1CE02C6C1CCEFE4200337539 /* RecipeListTableViewController.m in Sources */,
 				79E45ECE1CCB536C004F4234 /* HomeAdvertsModel.m in Sources */,
+				797337401CD0DD300068B2BE /* MyselfUserInfoViewController.m in Sources */,
 				79EB61B31CCE183800A6E23D /* HomeReferrerModel.m in Sources */,
 				77A8CF351CCB08A500A5CB46 /* UIView+ChangeFrame.m in Sources */,
 				773AE91C1CCF5A4E0000A46C /* VideoTableViewCell.m in Sources */,
@@ -1093,9 +1122,10 @@
 				773AE9071CCF5A1B0000A46C /* RecipeWaterfallFlowLayout.m in Sources */,
 				1CDD52E11CCB71A500A6C837 /* RecipeViewController.m in Sources */,
 				773AE93F1CCF5B420000A46C /* RecipeDetailStepCell.m in Sources */,
+				797337381CD0DC390068B2BE /* MyselfUserInfoModel.m in Sources */,
 				1CDD52D21CCB48C500A6C837 /* LoadingDataAnimation.m in Sources */,
+				7973373C1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m in Sources */,
 				773AE8F21CCF59AB0000A46C /* NewRecipeDetailController.m in Sources */,
-				1C031F491CCF513E00513257 /* MyselfUserInfoViewController.m in Sources */,
 				1CE02C681CCEFE2500337539 /* RecipeSearchCollectionCell.m in Sources */,
 				773AE9371CCF5B420000A46C /* NewRecipeDetailFootView.m in Sources */,
 				1C9A6A001CD09BBA00162F31 /* ShowBigImage.m in Sources */,
@@ -1112,6 +1142,7 @@
 				1CDE96B41CCDEC8200FF56AE /* NewWorkWaterfallModel.m in Sources */,
 				1CE02C691CCEFE2500337539 /* RecipeSearchReusableView.m in Sources */,
 				1CDD52F61CCB73CE00A6C837 /* RecipeListWaterfallViewController.m in Sources */,
+				77F4BFCD1CD0D5B900991545 /* CommnetButton.m in Sources */,
 				77A8CEB31CCB042F00A5CB46 /* ViewController.m in Sources */,
 				77A8CF3E1CCB08D600A5CB46 /* CycleScrollView.m in Sources */,
 				77A8CF371CCB08A500A5CB46 /* NSTimer+Addition.m in Sources */,
@@ -1147,6 +1178,7 @@
 				773AE93B1CCF5B420000A46C /* RecipeDetailHeaderView.m in Sources */,
 				770FC5C21CCE1E180047F5E5 /* URLRequest.m in Sources */,
 				79EB61A31CCE182600A6E23D /* HomeFooterView.m in Sources */,
+				77F4BFCB1CD0D5B900991545 /* YYCommentControl.m in Sources */,
 				1C031F531CCF8F3800513257 /* PraiseAndVisitTableViewCell.m in Sources */,
 				1C031F371CCF512900513257 /* MyselfIDModel.m in Sources */,
 				79EB61B11CCE183800A6E23D /* HomeMoreCookBooksModel.m in Sources */,
