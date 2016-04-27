@@ -108,6 +108,9 @@
 		77A8CF741CCB224800A5CB46 /* BaseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8CF6F1CCB224800A5CB46 /* BaseCollectionViewCell.xib */; };
 		77A8CF751CCB224800A5CB46 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8CF711CCB224800A5CB46 /* BaseTableViewCell.m */; };
 		77A8CF761CCB224800A5CB46 /* BaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8CF721CCB224800A5CB46 /* BaseTableViewCell.xib */; };
+		77F4BFCB1CD0D5B900991545 /* YYCommentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F4BFC71CD0D5B900991545 /* YYCommentControl.m */; };
+		77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */; };
+		77F4BFCD1CD0D5B900991545 /* CommnetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F4BFCA1CD0D5B900991545 /* CommnetButton.m */; };
 		79A6C33E1CCFA0D1008A3F23 /* HomeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */; };
 		79A6C33F1CCFA0D1008A3F23 /* HomeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */; };
 		79E45ECE1CCB536C004F4234 /* HomeAdvertsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E45ECD1CCB536C004F4234 /* HomeAdvertsModel.m */; };
@@ -331,6 +334,11 @@
 		77A8CF701CCB224800A5CB46 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		77A8CF711CCB224800A5CB46 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		77A8CF721CCB224800A5CB46 /* BaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseTableViewCell.xib; sourceTree = "<group>"; };
+		77F4BFC61CD0D5B900991545 /* YYCommentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCommentControl.h; sourceTree = "<group>"; };
+		77F4BFC71CD0D5B900991545 /* YYCommentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCommentControl.m; sourceTree = "<group>"; };
+		77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYCommentControl.xib; sourceTree = "<group>"; };
+		77F4BFC91CD0D5B900991545 /* CommnetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommnetButton.h; sourceTree = "<group>"; };
+		77F4BFCA1CD0D5B900991545 /* CommnetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommnetButton.m; sourceTree = "<group>"; };
 		79A6C33B1CCFA0D1008A3F23 /* HomeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeWebViewController.h; sourceTree = "<group>"; };
 		79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeWebViewController.m; sourceTree = "<group>"; };
 		79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWebViewController.xib; sourceTree = "<group>"; };
@@ -601,6 +609,11 @@
 				77A8CF3B1CCB08C500A5CB46 /* URLHeaderDefine.h */,
 				1C9A69FE1CD09BBA00162F31 /* ShowBigImage.h */,
 				1C9A69FF1CD09BBA00162F31 /* ShowBigImage.m */,
+				77F4BFC61CD0D5B900991545 /* YYCommentControl.h */,
+				77F4BFC71CD0D5B900991545 /* YYCommentControl.m */,
+				77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */,
+				77F4BFC91CD0D5B900991545 /* CommnetButton.h */,
+				77F4BFCA1CD0D5B900991545 /* CommnetButton.m */,
 				77A8CEE71CCB074900A5CB46 /* Category */,
 				77A8CF3F1CCB09CF00A5CB46 /* PrefixHeader.pch */,
 			);
@@ -994,6 +1007,7 @@
 				77A8CF741CCB224800A5CB46 /* BaseCollectionViewCell.xib in Resources */,
 				77A8CEB61CCB042F00A5CB46 /* Main.storyboard in Resources */,
 				1C9A69F81CD09AE700162F31 /* WorksPhotoHeaderView.xib in Resources */,
+				77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */,
 				773AE91B1CCF5A4E0000A46C /* PlayView.xib in Resources */,
 				773AE93A1CCF5B420000A46C /* NewRecipeDetailStepCell.xib in Resources */,
 				773AE9361CCF5B420000A46C /* RecipeDetailFooterView.xib in Resources */,
@@ -1107,6 +1121,7 @@
 				1CDE96B41CCDEC8200FF56AE /* NewWorkWaterfallModel.m in Sources */,
 				1CE02C691CCEFE2500337539 /* RecipeSearchReusableView.m in Sources */,
 				1CDD52F61CCB73CE00A6C837 /* RecipeListWaterfallViewController.m in Sources */,
+				77F4BFCD1CD0D5B900991545 /* CommnetButton.m in Sources */,
 				77A8CEB31CCB042F00A5CB46 /* ViewController.m in Sources */,
 				77A8CF3E1CCB08D600A5CB46 /* CycleScrollView.m in Sources */,
 				77A8CF371CCB08A500A5CB46 /* NSTimer+Addition.m in Sources */,
@@ -1141,6 +1156,7 @@
 				773AE93B1CCF5B420000A46C /* RecipeDetailHeaderView.m in Sources */,
 				770FC5C21CCE1E180047F5E5 /* URLRequest.m in Sources */,
 				79EB61A31CCE182600A6E23D /* HomeFooterView.m in Sources */,
+				77F4BFCB1CD0D5B900991545 /* YYCommentControl.m in Sources */,
 				1C031F531CCF8F3800513257 /* PraiseAndVisitTableViewCell.m in Sources */,
 				1C031F371CCF512900513257 /* MyselfIDModel.m in Sources */,
 				79EB61B11CCE183800A6E23D /* HomeMoreCookBooksModel.m in Sources */,
