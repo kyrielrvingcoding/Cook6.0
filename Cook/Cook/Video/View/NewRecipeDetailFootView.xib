@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NewRecipeDetailFootView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小贴士" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGN-9O-PRe">
+                    <rect key="frame" x="15" y="15" width="51" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="51" id="CEg-7Z-wzN"/>
+                        <constraint firstAttribute="height" constant="21" id="MkW-BL-mUs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-IV-CeI">
+                    <rect key="frame" x="15" y="54" width="565" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="W35-Q2-kUf">
+                    <rect key="frame" x="0.0" y="98" width="600" height="200"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="W35-Q2-kUf" secondAttribute="bottom" constant="2" id="6kw-am-cHL"/>
+                <constraint firstItem="W35-Q2-kUf" firstAttribute="top" secondItem="dzE-IV-CeI" secondAttribute="bottom" constant="44" id="Aw5-DC-ElC"/>
+                <constraint firstItem="EGN-9O-PRe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="EZ3-Si-VPv"/>
+                <constraint firstItem="EGN-9O-PRe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Izf-lq-Yrk"/>
+                <constraint firstItem="dzE-IV-CeI" firstAttribute="top" secondItem="EGN-9O-PRe" secondAttribute="bottom" constant="18" id="POE-H0-OOl"/>
+                <constraint firstItem="dzE-IV-CeI" firstAttribute="leading" secondItem="EGN-9O-PRe" secondAttribute="leading" id="aEQ-kM-OLh"/>
+                <constraint firstItem="W35-Q2-kUf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e69-u7-nnj"/>
+                <constraint firstAttribute="trailing" secondItem="dzE-IV-CeI" secondAttribute="trailing" constant="20" id="qfN-bA-0vf"/>
+                <constraint firstAttribute="trailing" secondItem="W35-Q2-kUf" secondAttribute="trailing" id="vwM-02-s0L"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="DescriptionLabel" destination="dzE-IV-CeI" id="GFm-yS-TIH"/>
+                <outlet property="tableView" destination="W35-Q2-kUf" id="Trj-dX-J3Q"/>
+            </connections>
+            <point key="canvasLocation" x="14" y="98"/>
+        </view>
+    </objects>
+</document>

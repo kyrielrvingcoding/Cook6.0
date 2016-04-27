@@ -1,0 +1,41 @@
+//
+//  PrefixHeader.pch
+//  Cook
+//
+//  Created by 诸超杰 on 16/4/23.
+//  Copyright © 2016年 class17. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//宏定义
+#define SCREENWIDTH [UIScreen mainScreen].bounds.size.width  //设备屏幕宽度
+
+#define describeLabelWidth ([UIScreen mainScreen].bounds.size.width / 3.0 * 2)
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height  //设备屏幕宽度
+#define SCREENBOUNDS [UIScreen mainScreen].bounds  //设备屏幕bounds
+#define NAVIGATIONBARHEIGHT 44 //导航条高
+
+
+
+#import "URLHeaderDefine.h"   //网络请求头文件
+#import "UIBarButtonItem+Extension.h"
+#import "UIView+ChangeFrame.h"    
+#import <MJRefresh/MJRefresh.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "AFNetworking.h"
+#import "LoadingDataAnimation.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+
+
+
+
+
+
+
+#endif /* PrefixHeader_pch */

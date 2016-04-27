@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="pgj-3a-xob" customClass="PraiseAndVisitTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="76"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pgj-3a-xob" id="ubf-eC-koA">
+                <rect key="frame" x="0.0" y="0.0" width="345" height="75.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pfo-aR-3K4">
+                        <rect key="frame" x="20" y="10" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="fDh-Ys-hQ6"/>
+                            <constraint firstAttribute="width" secondItem="Pfo-aR-3K4" secondAttribute="height" multiplier="1:1" id="rsp-Z5-xIl"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="30"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcF-bE-D9T">
+                        <rect key="frame" x="95" y="10" width="165" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="e4k-sX-Oxt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-D6-uNA">
+                        <rect key="frame" x="95" y="45" width="165" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="dgD-tQ-KxS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kmX-4A-F4a">
+                        <rect key="frame" x="275" y="25" width="60" height="30"/>
+                        <color key="backgroundColor" red="0.71764705880000002" green="0.63578071540000003" blue="0.87924161489999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="WBW-Nk-j6A"/>
+                            <constraint firstAttribute="height" constant="30" id="odf-lw-1jO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="cancelPraise:" destination="pgj-3a-xob" eventType="touchUpInside" id="pgx-q7-cuu"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Geg-D6-uNA" firstAttribute="leading" secondItem="Pfo-aR-3K4" secondAttribute="trailing" constant="15" id="20c-Km-b8d"/>
+                    <constraint firstItem="kmX-4A-F4a" firstAttribute="leading" secondItem="EcF-bE-D9T" secondAttribute="trailing" constant="15" id="2EE-Mv-87E"/>
+                    <constraint firstItem="Pfo-aR-3K4" firstAttribute="leading" secondItem="ubf-eC-koA" secondAttribute="leading" constant="20" id="9gd-bJ-Rdl"/>
+                    <constraint firstItem="kmX-4A-F4a" firstAttribute="centerY" secondItem="Pfo-aR-3K4" secondAttribute="centerY" id="EiX-Y2-1mC"/>
+                    <constraint firstAttribute="trailing" secondItem="kmX-4A-F4a" secondAttribute="trailing" constant="10" id="Hb0-4I-SNN"/>
+                    <constraint firstItem="EcF-bE-D9T" firstAttribute="top" secondItem="ubf-eC-koA" secondAttribute="top" constant="10" id="HuL-EP-fhb"/>
+                    <constraint firstItem="kmX-4A-F4a" firstAttribute="leading" secondItem="Geg-D6-uNA" secondAttribute="trailing" constant="15" id="JKT-6e-xXy"/>
+                    <constraint firstItem="EcF-bE-D9T" firstAttribute="leading" secondItem="Pfo-aR-3K4" secondAttribute="trailing" constant="15" id="Mam-DN-mFA"/>
+                    <constraint firstItem="Geg-D6-uNA" firstAttribute="top" secondItem="EcF-bE-D9T" secondAttribute="bottom" constant="10" id="nDH-od-fcI"/>
+                    <constraint firstItem="Pfo-aR-3K4" firstAttribute="top" secondItem="ubf-eC-koA" secondAttribute="top" constant="10" id="xOQ-sT-3vY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ConcernBtn" destination="kmX-4A-F4a" id="EzI-cV-oz4"/>
+                <outlet property="headerImageView" destination="Pfo-aR-3K4" id="EbF-xf-pH8"/>
+                <outlet property="nickNameLabel" destination="EcF-bE-D9T" id="d49-u8-FyS"/>
+                <outlet property="signatureLabel" destination="Geg-D6-uNA" id="ra7-Oo-yhx"/>
+            </connections>
+            <point key="canvasLocation" x="352.5" y="169"/>
+        </tableViewCell>
+    </objects>
+</document>
