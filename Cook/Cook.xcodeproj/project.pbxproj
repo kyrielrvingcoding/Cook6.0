@@ -29,6 +29,7 @@
 		1C9A69FA1CD09AE700162F31 /* WorksPhotoCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C9A69F61CD09AE700162F31 /* WorksPhotoCommentCell.xib */; };
 		1C9A69FD1CD09B2B00162F31 /* WorksPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A69FC1CD09B2B00162F31 /* WorksPhotoController.m */; };
 		1C9A6A001CD09BBA00162F31 /* ShowBigImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A69FF1CD09BBA00162F31 /* ShowBigImage.m */; };
+		1C9A6A081CD0E0BC00162F31 /* MyselfQuitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A6A071CD0E0BC00162F31 /* MyselfQuitView.m */; };
 		1CDD52D21CCB48C500A6C837 /* LoadingDataAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD52D11CCB48C500A6C837 /* LoadingDataAnimation.m */; };
 		1CDD52DE1CCB718100A6C837 /* RecipeCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD52DD1CCB718100A6C837 /* RecipeCategoryModel.m */; };
 		1CDD52E11CCB71A500A6C837 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD52E01CCB71A500A6C837 /* RecipeViewController.m */; };
@@ -180,6 +181,8 @@
 		1C9A69FC1CD09B2B00162F31 /* WorksPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorksPhotoController.m; sourceTree = "<group>"; };
 		1C9A69FE1CD09BBA00162F31 /* ShowBigImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBigImage.h; sourceTree = "<group>"; };
 		1C9A69FF1CD09BBA00162F31 /* ShowBigImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBigImage.m; sourceTree = "<group>"; };
+		1C9A6A061CD0E0BC00162F31 /* MyselfQuitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfQuitView.h; sourceTree = "<group>"; };
+		1C9A6A071CD0E0BC00162F31 /* MyselfQuitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfQuitView.m; sourceTree = "<group>"; };
 		1CDD52D11CCB48C500A6C837 /* LoadingDataAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingDataAnimation.m; sourceTree = "<group>"; };
 		1CDD52D31CCB48CE00A6C837 /* LoadingDataAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingDataAnimation.h; sourceTree = "<group>"; };
 		1CDD52DB1CCB716300A6C837 /* RecipeCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCategoryModel.h; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				1C031F391CCF513400513257 /* MyselfHeaderView.h */,
 				1C031F3A1CCF513400513257 /* MyselfHeaderView.m */,
 				1C031F3B1CCF513400513257 /* MyselfHeaderView.xib */,
+				1C9A6A061CD0E0BC00162F31 /* MyselfQuitView.h */,
+				1C9A6A071CD0E0BC00162F31 /* MyselfQuitView.m */,
 				1C031F511CCF8F3800513257 /* PraiseAndVisitTableViewCell.h */,
 				1C031F521CCF8F3800513257 /* PraiseAndVisitTableViewCell.m */,
 				1C031F541CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib */,
@@ -1127,6 +1132,7 @@
 				1C031F381CCF512900513257 /* UserInofManager.m in Sources */,
 				1CDD52F01CCB71C000A6C837 /* TYCircleCollectionView.m in Sources */,
 				773AE93D1CCF5B420000A46C /* RecipeMaterialCell.m in Sources */,
+				1C9A6A081CD0E0BC00162F31 /* MyselfQuitView.m in Sources */,
 				1C8B09091CCBBB16005289C0 /* RecipeReferrerModel.m in Sources */,
 				773AE9221CCF5A6B0000A46C /* AVPlayerController.m in Sources */,
 				1C031F4D1CCF683400513257 /* UserLoginModel.m in Sources */,

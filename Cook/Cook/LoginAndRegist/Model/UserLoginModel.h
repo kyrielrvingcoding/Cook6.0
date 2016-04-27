@@ -15,5 +15,7 @@
 @property (nonatomic, copy) NSString *profileImageUrl;
 @property (nonatomic, copy) NSString *joinDate;
 @property (nonatomic, copy) NSString *residence; //所在地
+@property (nonatomic, strong) NSNumber *concernCount; //关注
+@property (nonatomic, strong) NSNumber *FansCount; //粉丝
 
 @end
