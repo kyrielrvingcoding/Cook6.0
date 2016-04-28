@@ -1,4 +1,4 @@
-//
+ //
 //  LatestDevelopmentModelCell.m
 //  Cook
 //
@@ -9,24 +9,65 @@
 #import "LatestDevelopmentModelCell.h"
 #import "LatestDevelopmentModel.h"
 
+@interface LatestDevelopmentModelCell ()
+@property (nonatomic, strong) NSArray *array;
+@end
 @implementation LatestDevelopmentModelCell
 
+- (NSArray *)array {
+    if (_array == nil) {
+        _array = [[NSArray alloc] initWithObjects:@"", @"", @"评论菜谱", @"收藏菜谱", @"发布菜谱", @"", @"", @"称赞菜谱", @"发布作品", @"", @"",nil];
+    }
+    return _array;
+}
 - (void)setDataWithModel:(LatestDevelopmentModel *)model {
     [_operatorImageView sd_setImageWithURL:[NSURL URLWithString:model.operatorModel.profileImageUrl]];
     _operatorNameLabel.text = model.operatorModel.nickname;
     _dateLabel.text = [self figuringoutTimesFromNowWith:model.date];
-    if ([model.actionTag isEqualToString:@"8"]) {
-        _tagView.backgroundColor = [UIColor purpleColor];
-        _tagLabel.text = @"发布作品";
-        [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.newworkModel.imageUrl]];
-        _recipeLabel.text = model.newworkModel.content;
-    } else if ([model.actionTag isEqualToString:@"4"]) {
-        _tagView.backgroundColor = [UIColor orangeColor];
-        _tagLabel.text = @"发布菜谱";
-        [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.recipeModel.imageUrl]];
-        _recipeLabel.text = model.recipeModel.name;
+//    if ([model.actionTag isEqualToString:@"8"]) {
+//        _tagView.backgroundColor = [UIColor purpleColor];
+//        _tagLabel.text = @"发布作品";
+//        [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.newworkModel.imageUrl]];
+//        _recipeLabel.text = model.newworkModel.content;
+//    } else if ([model.actionTag isEqualToString:@"4"]) {
+//        _tagView.backgroundColor = [UIColor orangeColor];
+//        _tagLabel.text = @"发布菜谱";
+//        [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.recipeModel.imageUrl]];
+//        _recipeLabel.text = model.recipeModel.name;
+//    } else if ([model.actionTag isEqualToString:@"3"]) {
+//        _tagView.backgroundColor = [UIColor orangeColor];
+//        _tagLabel.text = @"收藏菜谱";
+//        [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.recipeModel.imageUrl]];
+//        _recipeLabel.text = model.recipeModel.name;
+//    } else if [([model.actionTag isEqualToString:<#(nonnull NSString *)#>])
+//
+
+    int tag = [model.actionTag intValue];
+    _tagLabel.text = self.array[tag];
+    _tagView.backgroundColor = [UIColor orangeColor];
+    [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.recipeModel.imageUrl]];
+    NSString *str = model.recipeModel.name;
+    switch (tag) {
+        case 8:
+            [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.newworkModel.imageUrl]];
+            str = model.newworkModel.content;
+            _tagLabel.backgroundColor = [UIColor purpleColor];
+            break;
+        case 2:
+            str = model.commentContent;
+            _tagLabel.backgroundColor = [UIColor greenColor];
+            break;
+        case 7:
+            str = model.recipeModel.name;
+            _tagLabel.backgroundColor = [UIColor redColor];
+            break;
+        default:
+            break;
     }
+    _recipeLabel.text = str;
+    
 }
+
 
 - (NSString *)figuringoutTimesFromNowWith:(NSString *)time {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

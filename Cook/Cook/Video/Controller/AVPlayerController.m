@@ -136,10 +136,12 @@ typedef NS_ENUM(NSInteger, PlayState) {
     _layer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
     [self.view.layer insertSublayer:_layer atIndex:0];
 }
-
+- (void)ssss:(id)ss {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(ssss:) userInfo:nil repeats:YES];
     _mark = 0;
  
     if (!_model.playUrl) {
@@ -502,7 +504,12 @@ typedef NS_ENUM(NSInteger, PlayState) {
     [self hiddenOtherExceptMovieLabel:YES];
 }
 
-
+- (void)dealloc {
+    NSLog(@"so;");
+    if (self.player) {
+        self.player = nil;
+    }
+}
 //是当应用程序收到内存警告时，会被触发，而且是工程中所有的控制器对象(viewController类被创建过对象，并且对象没有被释放)都会收到内存警告
 //当收到内存警告是，要释放可再生的内存数据，通过方法可将资源重写加载回来
 - (void)didReceiveMemoryWarning {

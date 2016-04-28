@@ -63,7 +63,7 @@
                 <outlet property="headerImageView" destination="Elk-xI-CBq" id="fg2-iZ-1GL"/>
                 <outlet property="naemLabel" destination="hUS-G8-4wp" id="07z-KE-Pus"/>
             </connections>
-            <point key="canvasLocation" x="204.5" y="218"/>
+            <point key="canvasLocation" x="322.5" y="217"/>
         </tableViewCell>
     </objects>
 </document>
