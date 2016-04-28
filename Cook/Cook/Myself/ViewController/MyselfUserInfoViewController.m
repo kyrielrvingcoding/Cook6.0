@@ -40,7 +40,7 @@
 @property (nonatomic, strong) UIButton *cookbookBtn;
 @property (nonatomic, strong) UIButton *collectionBtn;
 @property (nonatomic, strong) UIButton *workBtn;
-
+@property (nonatomic, strong) UIView *headerSectionView;
 
 
 
@@ -260,6 +260,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSLog(@"%ld",section);
+    if (self.headerSectionView == nil) {
+    NSLog(@"========================1");
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
     _dynamicBtn = [self createButtonWithTitle:@"动态" imageName:nil buttonNumber:0 action:@selector(dynamicBtn:)];
     _cookbookBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@菜谱",[_userInfoArray[0] recipeCount]] imageName:nil buttonNumber:1 action:@selector(cookbookBtn:)];
@@ -270,44 +273,57 @@
     [view addSubview:_cookbookBtn];
     [view addSubview:_collectionBtn];
     [view addSubview:_workBtn];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
-    imageView.backgroundColor = [UIColor orangeColor];
-    [view addSubview:imageView];
-    _imageView = imageView;
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
+    _imageView.backgroundColor = [UIColor orangeColor];
+    [view addSubview:_imageView];
+        self.headerSectionView = view;
+    }
     
-    return view;
+    return self.headerSectionView;
 }
 
 - (void)dynamicBtn:(UIButton *)button {
 
-    index = 0;
+
     [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+        self.imageView.x = 0 * SCREENWIDTH / 4;
+        self.imageView.backgroundColor = [UIColor redColor];
+    } completion:^(BOOL finished) {
+        NSLog(@"%lf",self.imageView.frame.origin.x);
     }];
     self.dataArray = self.dynamicArray;
     [self.tableView reloadData];
     
 }
 - (void)cookbookBtn:(UIButton *)button {
-    index = 1;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
-    }];
-    self.dataArray = self.cookbookArray;
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [UIView animateWithDuration:0.3 animations:^{
+            self.imageView.x = 1 * SCREENWIDTH / 4;
+            
+        } completion:^(BOOL finished) {
+            NSLog(@"%lf",self.imageView.frame.origin.x);
+            
+        }];
+
+    });
+        self.dataArray = self.cookbookArray;
     [self.tableView reloadData];
 }
 - (void)collectionBtn:(UIButton *)button {
-    index = 2;
+
     [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+        self.imageView.x = 2 * SCREENWIDTH / 4;
     }];
     self.dataArray = self.collectionArray;
     [self.tableView reloadData];
 }
+
+
 - (void)workBtn:(UIButton *)button {
-    index = 3;
+
 //    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+        self.imageView.frame = CGRectMake(3 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
 //    }];
     self.dataArray = self.workArray;
     [self.tableView reloadData];

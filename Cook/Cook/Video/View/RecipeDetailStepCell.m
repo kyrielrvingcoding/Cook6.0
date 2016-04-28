@@ -24,7 +24,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 40, 40)];
         self.stepLabel.font = [UIFont systemFontOfSize:28];
         [self.contentView addSubview:self.stepLabel];

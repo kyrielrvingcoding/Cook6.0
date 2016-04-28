@@ -99,7 +99,7 @@ static NSString *RecipeMaterialCellReuseIdentifier = @"RecipeMaterialCellReuseId
     self.iconName.text = model.userModel.nickname;
     self.dateLabel.text = model.uploadDate;
     self.describeLabel.text = model.Description;
-    [self.iconImage sd_setImageWithURL:[NSURL URLWithString:model.userModel.nickname]];
+    [self.iconImage sd_setImageWithURL:[NSURL URLWithString:model.userModel.profileImageUrl]];
     self.iconImage.layer.masksToBounds = YES;
     self.iconImage.layer.cornerRadius = 20;
 
