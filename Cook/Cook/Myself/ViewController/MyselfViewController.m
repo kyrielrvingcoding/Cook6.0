@@ -11,6 +11,7 @@
 #import "MySelfHeaderView.h"
 #import "UserInofManager.h"
 #import "PraiseAndVisitViewController.h"
+#import "MyselfQuitView.h"
 
 @interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     [self createTableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLoginMessage) name:@"refreshLoginMessage" object:nil];
@@ -47,6 +48,7 @@
     _tableView = [[UITableView alloc] initWithFrame:SCREENBOUNDS style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    _tableView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:_tableView];
     MyselfHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfHeaderView" owner:nil options:nil]lastObject];
     [headerView requestData];
@@ -54,13 +56,14 @@
     _refreshData = ^{
        [headerView requestData];
     };
-    headerView.judgeLoginStatus = ^(UIButton *button) {
+    //判断登录状态
+    headerView.judgeLoginStatus = ^(UILabel *label) {
         if ([[UserInofManager getSessionID] isEqualToString:@""]) {
             CYloginRegisterViewController *loginVC = [[CYloginRegisterViewController alloc] init];
             [self presentViewController:loginVC animated:YES completion:nil];
         } else {
             PraiseAndVisitViewController *praiseVC = [[PraiseAndVisitViewController alloc] init];
-            if (button.tag == 2000) {
+            if (label.tag == 2000) {
                 praiseVC.type = @"1";
                 praiseVC.titleName = @"我的关注";
             } else {
@@ -70,7 +73,25 @@
             [self.navigationController pushViewController:praiseVC animated:YES];
         }
     };
+    headerView.judgeLoginOrQuit = ^(UIImageView *imageView) {
+        if ([[UserInofManager getSessionID] isEqualToString:@""]) {
+            CYloginRegisterViewController *loginVC = [[CYloginRegisterViewController alloc] init];
+            [self presentViewController:loginVC animated:YES completion:nil];
+        } else {
+            for (UIView *view in self.view.subviews) {
+                if ([view isKindOfClass:[MyselfQuitView class]]) {
+                    return ;
+                }
+            }
+            MyselfQuitView *imageV = [[MyselfQuitView alloc] initWithFrame:CGRectMake(SCREENWIDTH / 2 - 75, -150, 150, 150)];
+            [self.view addSubview:imageV];
+            [UIView animateWithDuration:0.5 animations:^{
+                imageV.frame = CGRectMake(SCREENWIDTH / 2 - 75, SCREENHEIGHT / 2 - 75, 150, 150);
+            }];
+        }
+    };
 }
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,11 +110,12 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.imageView.image = [UIImage imageNamed:@"ms_caipu_level_un"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if (indexPath.row % 2 == 0) {
-             cell.backgroundColor = [UIColor colorWithRed:226 / 255.0 green:233 / 255.0 blue:248/ 255.0 alpha:1.0];
-        } else {
-            cell.backgroundColor = [UIColor colorWithRed:195 / 255.0 green:204 / 255.0 blue:239 / 255.0 alpha:1.0];
-        }
+//        if (indexPath.row % 2 == 0) {
+//             cell.backgroundColor = [UIColor colorWithRed:226 / 255.0 green:233 / 255.0 blue:248/ 255.0 alpha:1.0];
+//        } else {
+//            cell.backgroundColor = [UIColor colorWithRed:195 / 255.0 green:204 / 255.0 blue:239 / 255.0 alpha:1.0];
+//        }
+        cell.backgroundColor = [UIColor lightGrayColor];
     }
     return cell;
 }
@@ -110,10 +132,7 @@
     
 }
 
-//- (void)change {
-//    CYloginRegisterViewController *cy = [[CYloginRegisterViewController alloc] initWithNibName:@"CYloginRegisterViewController" bundle:nil];
-//    [self presentViewController:cy animated:YES completion:nil];
-//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
