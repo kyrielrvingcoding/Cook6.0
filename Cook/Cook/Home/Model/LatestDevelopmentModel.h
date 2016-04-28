@@ -15,6 +15,7 @@
 
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSString *actionTag;
+@property (nonatomic, copy) NSString *commentContent;
 @property (nonatomic, strong) HomeNewUserModel *operatorModel;
 @property (nonatomic, strong) RecipeListWaterfallModel *recipeModel;
 @property (nonatomic, strong) NewWorkWaterfallModel *newworkModel;

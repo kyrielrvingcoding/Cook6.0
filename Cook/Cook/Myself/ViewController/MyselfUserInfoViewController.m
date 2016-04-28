@@ -12,23 +12,27 @@
 #import "MyselfUserInfoModel.h"
 #import "HomeMoreCookBooksModelCell.h"
 #import "PraiseAndVisitViewController.h"
-
-
+#import "LatestDevelopmentModel.h"
+#import "NewWorkListWaterfallCell.h"
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     NSInteger index;
 }
 
-@property (nonatomic, copy) UIScrollView *rootScrollView;
-@property (nonatomic, strong) UITableView *cookbookTableView;
-@property (nonatomic, strong) UITableView *collectTableView;
-@property (nonatomic, strong) UITableView *workTableView;
-@property (nonatomic, strong) UITableView *dynamicTableView;
+//@property (nonatomic, copy) UIScrollView *rootScrollView;
+//@property (nonatomic, strong) UITableView *cookbookTableView;
+//@property (nonatomic, strong) UITableView *collectTableView;
+//@property (nonatomic, strong) UITableView *workTableView;
+//@property (nonatomic, strong) UITableView *dynamicTableView;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray *cookbookArray;
-@property (nonatomic, strong) NSMutableArray *dynamicArray;
-@property (nonatomic, strong) NSMutableArray *collectionArray;
-@property (nonatomic, strong) NSMutableArray *workArray;
+@property (nonatomic, strong) NSMutableArray *cookbookArray;//菜谱
+@property (nonatomic, strong) NSMutableArray *dynamicArray;//动态
+@property (nonatomic, strong) NSMutableArray *collectionArray;//收藏
+@property (nonatomic, strong) NSMutableArray *workArray;//作品
+
+@property (nonatomic, strong) NSMutableArray *dataArray;//承载
 
 @property (nonatomic, strong) NSMutableArray *userInfoArray;
 @property (nonatomic, strong)  MyselfUserInfoModel *userInfo;
@@ -82,8 +86,26 @@
     return _userInfoArray;
 }
 
-- (void)requestDataWithType:(NSString *)type {
-    
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
+            _tableView.dataSource = self;
+            _tableView.delegate = self;
+            _tableView.tableFooterView = [UIView new];
+        
+        
+        [_tableView registerNib:[UINib nibWithNibName:@"HomeMoreCookBooksModelCell" bundle:nil] forCellReuseIdentifier:@"HomeMoreCookBooksModel"];
+        [_tableView registerNib:[UINib nibWithNibName:@"LatestDevelopmentModelCell" bundle:nil] forCellReuseIdentifier:@"LatestDevelopmentModel"];
+//        [_tableView registerNib:[UINib nibWithNibName:@"NewWorkListWaterfallCell" bundle:nil] forCellReuseIdentifier:@"NewWorkWaterfallModel"];
+
+//        [_tableView registerClass:[NewWorkListWaterfallCell class] forCellReuseIdentifier:@"NewWorkWaterfallModel"];
+        
+    }
+    return _tableView;
+}
+
+- (void)requestDataWithType:(NSString *)type And:(NSMutableArray *)dataArray And:(NSString *)ModelName{
+    NSMutableArray *Array = (NSMutableArray *) dataArray;
     NSDictionary *parameter = @{@"m":@"mobile", @"c":@"index",@"a":type, @"id":_ID,@"sessionId":@"e2ea23a4fe2bd8429326a453476b4f90",@"pageSize":@20,@"pageNum":@1};
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -97,24 +119,28 @@
         
         NSArray *dataArray = dic[@"data"];
         for (NSDictionary *IDDic in dataArray) {
-            MyselfIDModel *model = [[MyselfIDModel alloc] init];
+            Class class = NSClassFromString(ModelName);
+           id model = [[class alloc] init];
             [model setValuesForKeysWithDictionary:IDDic];
+//            NSDictionary *cookbookDic = IDDic[@"cookbook"];
+//            HomeMoreCookBooksModel *cookbook = [[HomeMoreCookBooksModel alloc] init];
+//            [cookbook setValuesForKeysWithDictionary:cookbookDic];
+//            model.cookbook = cookbook;
+//            [self.cookbookArray addObject: cookbook];
             
-            NSDictionary *cookbookDic = IDDic[@"cookbook"];
-            HomeMoreCookBooksModel *cookbook = [[HomeMoreCookBooksModel alloc] init];
-            [cookbook setValuesForKeysWithDictionary:cookbookDic];
-            model.cookbook = cookbook;
-            [self.cookbookArray addObject: cookbook];
-            
-            NSDictionary *operationDic = IDDic[@"operation"];
-            HomeNewUserModel *userModel = [[HomeNewUserModel alloc] init];
-            [userModel setValuesForKeysWithDictionary:operationDic];
-            model.userModel = userModel;
-            [self.cookbookArray addObject:model];
+//            NSDictionary *operationDic = IDDic[@"operation"];
+//            HomeNewUserModel *userModel = [[HomeNewUserModel alloc] init];
+//            [userModel setValuesForKeysWithDictionary:operationDic];
+//            model.userModel = userModel;
+//            [self.cookbookArray addObject:model];
+            [Array addObject:model];
         }
-        
+        if ([ModelName isEqualToString:@"LatestDevelopmentModel"]) {
+            self.dataArray = Array;
+            [self.tableView reloadData];
+        }
 //        [self.collectTableView reloadData];
-        [self.dynamicTableView reloadData];
+//        [self.dynamicTableView reloadData];
 //        [self.collectTableView reloadData];
 //        [self.collectTableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -145,15 +171,15 @@
         
         MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
         [headerView setDataWithModel:_userInfo];
-        _dynamicTableView.tableHeaderView = headerView;
+        self.tableView.tableHeaderView = headerView;
 //        _collectTableView.tableHeaderView = headerView;
 //        _cookbookTableView.tableHeaderView = headerView;
 //        _workTableView.tableHeaderView = headerView;
-        [self.dynamicTableView reloadData];
+        [self.tableView reloadData];
 //        [self.collectTableView reloadData];
 //        [self.cookbookTableView reloadData];
 //        [self.workTableView reloadData];
-        [self createTableViewWithOffestWithScreenWidth:index];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
@@ -161,34 +187,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    index = 0;
-    [self createScrollView];
-    
-    [self requestDataWithType:@"getMyDynamics"];
+    [self.view addSubview:self.tableView];
+
     [self requestData];
+    [self requestDataWithType:@"getMyDynamics" And:self.dynamicArray And:NSStringFromClass([LatestDevelopmentModel class])];
+    [self requestDataWithType:@"getMyRecipes" And:self.cookbookArray And:NSStringFromClass([HomeMoreCookBooksModel class])];
+    [self requestDataWithType:@"getMyCollects" And:self.collectionArray And:NSStringFromClass([HomeMoreCookBooksModel class])];
+//    [self requestDataWithType:@"getMyWorks" And:self.workArray And:NSStringFromClass([NewWorkWaterfallModel class])];
+    
+//    index = 0;
+//    [self createScrollView];
+    
+//    [self requestDataWithType:@"getMyDynamics"];
+   
 
-    [_cookbookTableView registerNib:[UINib nibWithNibName:@"HomeMoreCookBooksModelCell" bundle:nil] forCellReuseIdentifier:@"reuse"];
 }
 
-- (void)createScrollView {
-    
-    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
-    _rootScrollView.contentSize = CGSizeMake(SCREENWIDTH * 4, SCREENHEIGHT );
-    _rootScrollView.contentOffset = CGPointMake(0, 0);
-    [self.view addSubview:_rootScrollView];
-}
+//- (void)createScrollView {
+//    
+//    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+//    _rootScrollView.contentSize = CGSizeMake(SCREENWIDTH * 4, SCREENHEIGHT );
+//    _rootScrollView.contentOffset = CGPointMake(0, 0);
+//    [self.view addSubview:_rootScrollView];
+//}
 
-- (void)createTableViewWithOffestWithScreenWidth:(NSInteger)numberIndex {
-    numberIndex = index;
-    _dynamicTableView = [[UITableView alloc] initWithFrame:CGRectMake(numberIndex * SCREENWIDTH,0 , SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-    _dynamicTableView.dataSource = self;
-    _dynamicTableView.delegate = self;
-    _dynamicTableView.tableFooterView = [UIView new];
-    [_rootScrollView addSubview:_dynamicTableView];
-    
-    MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
-    [headerView setDataWithModel:_userInfo];
-    _dynamicTableView.tableHeaderView = headerView;
+//- (void)createTableViewWithOffestWithScreenWidth:(NSInteger)numberIndex {
+//    numberIndex = index;
+//    _dynamicTableView = [[UITableView alloc] initWithFrame:CGRectMake(numberIndex * SCREENWIDTH,0 , SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
+//    _dynamicTableView.dataSource = self;
+//    _dynamicTableView.delegate = self;
+//    _dynamicTableView.tableFooterView = [UIView new];
+//    [_rootScrollView addSubview:_dynamicTableView];
+//    
+//    MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
+//    [headerView setDataWithModel:_userInfo];
+//    _dynamicTableView.tableHeaderView = headerView;
 
     
 //    _collectTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 1 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
@@ -209,7 +242,7 @@
 //    [_rootScrollView addSubview:_workTableView];
     
 
-}
+//}
 
 #pragma mark ----- 协议方法 -----
 - (UIButton *)createButtonWithTitle:(NSString *)title imageName:(NSString *)imageName buttonNumber:(NSInteger)buttonNumber action:(SEL)action {
@@ -219,12 +252,10 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
+//    [button setImageEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(buttonNumber * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
-    imageView.backgroundColor = [UIColor orangeColor];
-    [button addSubview:imageView];
+    
     return button;
 }
 
@@ -234,36 +265,65 @@
     _cookbookBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@菜谱",[_userInfoArray[0] recipeCount]] imageName:nil buttonNumber:1 action:@selector(cookbookBtn:)];
     _collectionBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@收藏",[_userInfoArray[0] collectCount]] imageName:nil buttonNumber:2 action:@selector(collectionBtn:)];
     _workBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@作品",[_userInfoArray[0] workCount]] imageName:nil buttonNumber:3 action:@selector(workBtn:)];
+    
     [view addSubview:_dynamicBtn];
     [view addSubview:_cookbookBtn];
     [view addSubview:_collectionBtn];
     [view addSubview:_workBtn];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
+    imageView.backgroundColor = [UIColor orangeColor];
+    [view addSubview:imageView];
+    _imageView = imageView;
     
     return view;
 }
 
 - (void)dynamicBtn:(UIButton *)button {
-    [self createTableViewWithOffestWithScreenWidth:0];
-    [self requestDataWithType:@"getMyDynamics"];
+
+    index = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
+    self.dataArray = self.dynamicArray;
+    [self.tableView reloadData];
     
 }
 - (void)cookbookBtn:(UIButton *)button {
-    [self createTableViewWithOffestWithScreenWidth:1];
-    [self requestDataWithType:@"getMyRecipes"];
+    index = 1;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
+    self.dataArray = self.cookbookArray;
+    [self.tableView reloadData];
 }
 - (void)collectionBtn:(UIButton *)button {
-    [self createTableViewWithOffestWithScreenWidth:2];
-    [self requestDataWithType: @"getMyCollects"];
+    index = 2;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
+    self.dataArray = self.collectionArray;
+    [self.tableView reloadData];
 }
 - (void)workBtn:(UIButton *)button {
-    [self createTableViewWithOffestWithScreenWidth:3];
-    [self requestDataWithType:@"getMyWorks"];
+    index = 3;
+//    [UIView animateWithDuration:0.3 animations:^{
+        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+//    }];
+    self.dataArray = self.workArray;
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
  
-     return self.cookbookArray.count;
+     return self.dataArray.count;
   
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(_dynamicBtn){
+//    return SCREENWIDTH / 2 + 63;
+    }
+    return SCREENHEIGHT * 0.15;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -272,15 +332,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    HomeMoreCookBooksModelCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
-    HomeMoreCookBooksModel *cookModel = self.cookbookArray[indexPath.row];
-    [cell setDataWithModel:cookModel];
+    id model = self.dataArray[indexPath.row];
+    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([model class]) forIndexPath:indexPath];
+    [cell setDataWithModel:self.dataArray[indexPath.row]];
+    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return SCREENHEIGHT * 0.15;
-}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 40;

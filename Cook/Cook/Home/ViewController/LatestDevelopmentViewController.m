@@ -43,18 +43,18 @@
         for (NSDictionary *dataDic in dic[@"data"]) {
             LatestDevelopmentModel *latestModel = [[LatestDevelopmentModel alloc] init];
             [latestModel setValuesForKeysWithDictionary:dataDic];
-            HomeNewUserModel *operatorModel = [[HomeNewUserModel alloc] init];
-            [operatorModel setValuesForKeysWithDictionary:dataDic[@"operator"]];
-            if ([latestModel.actionTag isEqualToString:@"4"]) {
-                RecipeListWaterfallModel *recipeModel = [[RecipeListWaterfallModel alloc] init];
-                [recipeModel setValuesForKeysWithDictionary:dataDic[@"cookbook"]];
-                latestModel.recipeModel = recipeModel;
-            } else if ([latestModel.actionTag isEqualToString:@"8"]) {
-                NewWorkWaterfallModel *newworkModel = [[NewWorkWaterfallModel alloc] init];
-                [newworkModel setValuesForKeysWithDictionary:dataDic[@"work"]];
-                latestModel.newworkModel = newworkModel;
-            }
-            latestModel.operatorModel = operatorModel;
+//            HomeNewUserModel *operatorModel = [[HomeNewUserModel alloc] init];
+//            [operatorModel setValuesForKeysWithDictionary:dataDic[@"operator"]];
+//            if ([latestModel.actionTag isEqualToString:@"4"]) {
+//                RecipeListWaterfallModel *recipeModel = [[RecipeListWaterfallModel alloc] init];
+//                [recipeModel setValuesForKeysWithDictionary:dataDic[@"cookbook"]];
+//                latestModel.recipeModel = recipeModel;
+//            } else if ([latestModel.actionTag isEqualToString:@"8"]) {
+//                NewWorkWaterfallModel *newworkModel = [[NewWorkWaterfallModel alloc] init];
+//                [newworkModel setValuesForKeysWithDictionary:dataDic[@"work"]];
+//                latestModel.newworkModel = newworkModel;
+//            }
+//            latestModel.operatorModel = operatorModel;
             [self.dataArray addObject:latestModel];
         }
         [LoadingDataAnimation stopAnimation];
