@@ -62,8 +62,5 @@
 }
 
 
-- (void)setValue:(id)value forKeyPath:(NSString *)keyPath {
-    NSLog(@"%@",keyPath);
-    
-}
+
 @end

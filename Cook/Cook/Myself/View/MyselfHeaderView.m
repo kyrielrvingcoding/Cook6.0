@@ -99,7 +99,6 @@
 - (void)clickLabel:(UITapGestureRecognizer *)tap {
     UILabel *label = (UILabel *)tap.view;
     _judgeLoginStatus(label);
-    NSLog(@"1111");
 }
 
 //轻点头像，跳转到设置到个人设置界面(没有登录时，跳转到登录)

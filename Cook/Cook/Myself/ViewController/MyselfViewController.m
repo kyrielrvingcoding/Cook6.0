@@ -12,6 +12,7 @@
 #import "UserInofManager.h"
 #import "PraiseAndVisitViewController.h"
 #import "MyselfQuitView.h"
+#import "MyselfCollectViewController.h"
 
 @interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -85,7 +86,7 @@
             }
             MyselfQuitView *imageV = [[MyselfQuitView alloc] initWithFrame:CGRectMake(SCREENWIDTH / 2 - 75, -150, 150, 150)];
             [self.view addSubview:imageV];
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 imageV.frame = CGRectMake(SCREENWIDTH / 2 - 75, SCREENHEIGHT / 2 - 75, 150, 150);
             }];
         }
@@ -101,12 +102,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSArray *array = @[@"我的足迹", @"我的收藏", @"分享应用",@"清除缓存",@"建议、问题反馈",@"关于我们", @"推送通知"];
-   static NSString *str = @"reuse";
+   static NSString *str = @"myselfViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
         cell.textLabel.text = array[indexPath.row];
-        cell.textLabel.font = [UIFont systemFontOfSize:20];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.imageView.image = [UIImage imageNamed:@"ms_caipu_level_un"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -128,11 +129,41 @@
     if ([[UserInofManager getSessionID] isEqualToString:@""]) {
         CYloginRegisterViewController *cy = [[CYloginRegisterViewController alloc] initWithNibName:@"CYloginRegisterViewController" bundle:nil];
         [self presentViewController:cy animated:YES completion:nil];
+    } else {
+        [self clickCellAtIndex:indexPath.row];
     }
-    
 }
 
-
+//点击cell执行
+- (void)clickCellAtIndex:(NSInteger)index {
+    switch (index) {
+        case 0:
+            NSLog(@"111");
+            break;
+        case 1: {
+            MyselfCollectViewController *collectVC = [[MyselfCollectViewController alloc] init];
+            [self.navigationController pushViewController:collectVC animated:YES];
+            break;
+        }
+        case 2:
+            NSLog(@"333");
+            break;
+        case 3:
+            NSLog(@"444");
+            break;
+        case 4:
+            NSLog(@"555");
+            break;
+        case 5:
+            NSLog(@"666");
+            break;
+        case 6:
+            NSLog(@"777");
+            break;
+        default:
+            break;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

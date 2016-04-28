@@ -232,8 +232,6 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
         f.origin.y = yOffset;
         f.size.height = -yOffset + 35;
         f.origin.x = xOffset;
-        NSLog(@"%f",xOffset);
-        NSLog(@"%f",yOffset);
         f.size.width = SCREENWIDTH + fabs(xOffset) * 2;
         self.headerView.frame = f;
 

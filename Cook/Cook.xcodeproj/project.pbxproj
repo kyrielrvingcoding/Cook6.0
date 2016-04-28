@@ -16,6 +16,9 @@
 		1C031F501CCF8DCD00513257 /* PraiseAndVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F4F1CCF8DCD00513257 /* PraiseAndVisitViewController.m */; };
 		1C031F531CCF8F3800513257 /* PraiseAndVisitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C031F521CCF8F3800513257 /* PraiseAndVisitTableViewCell.m */; };
 		1C031F551CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C031F541CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib */; };
+		1C1B59F61CD1FD6800827112 /* MyselfCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B59F51CD1FD6800827112 /* MyselfCollectViewController.m */; };
+		1C1B59F91CD1FFFF00827112 /* MyselfCollectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1B59F81CD1FFFF00827112 /* MyselfCollectTableViewCell.m */; };
+		1C1B59FB1CD2001200827112 /* MyselfCollectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C1B59FA1CD2001200827112 /* MyselfCollectTableViewCell.xib */; };
 		1C8B09061CCBB9BB005289C0 /* RecipeListWaterfallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B09051CCBB9BB005289C0 /* RecipeListWaterfallModel.m */; };
 		1C8B09091CCBBB16005289C0 /* RecipeReferrerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B09081CCBBB16005289C0 /* RecipeReferrerModel.m */; };
 		1C9A69E81CD04E7D00162F31 /* LatestDevelopmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A69E71CD04E7D00162F31 /* LatestDevelopmentViewController.m */; };
@@ -116,6 +119,9 @@
 		7973373C1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */; };
 		7973373D1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */; };
 		797337401CD0DD300068B2BE /* MyselfUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */; };
+		79940ABE1CD1F64900BEDEA5 /* MyselfWorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79940ABD1CD1F64900BEDEA5 /* MyselfWorkCell.m */; };
+		79940AC01CD1F66400BEDEA5 /* MyselfWorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79940ABF1CD1F66400BEDEA5 /* MyselfWorkCell.xib */; };
+		79940AC31CD1FA6D00BEDEA5 /* MyselfWorkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79940AC21CD1FA6D00BEDEA5 /* MyselfWorkModel.m */; };
 		79A6C33E1CCFA0D1008A3F23 /* HomeWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */; };
 		79A6C33F1CCFA0D1008A3F23 /* HomeWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */; };
 		79E45ECE1CCB536C004F4234 /* HomeAdvertsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79E45ECD1CCB536C004F4234 /* HomeAdvertsModel.m */; };
@@ -165,6 +171,11 @@
 		1C031F511CCF8F3800513257 /* PraiseAndVisitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraiseAndVisitTableViewCell.h; sourceTree = "<group>"; };
 		1C031F521CCF8F3800513257 /* PraiseAndVisitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseAndVisitTableViewCell.m; sourceTree = "<group>"; };
 		1C031F541CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PraiseAndVisitTableViewCell.xib; sourceTree = "<group>"; };
+		1C1B59F41CD1FD6800827112 /* MyselfCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfCollectViewController.h; sourceTree = "<group>"; };
+		1C1B59F51CD1FD6800827112 /* MyselfCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfCollectViewController.m; sourceTree = "<group>"; };
+		1C1B59F71CD1FFFF00827112 /* MyselfCollectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfCollectTableViewCell.h; sourceTree = "<group>"; };
+		1C1B59F81CD1FFFF00827112 /* MyselfCollectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfCollectTableViewCell.m; sourceTree = "<group>"; };
+		1C1B59FA1CD2001200827112 /* MyselfCollectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfCollectTableViewCell.xib; sourceTree = "<group>"; };
 		1C8B09041CCBB9BB005289C0 /* RecipeListWaterfallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListWaterfallModel.h; sourceTree = "<group>"; };
 		1C8B09051CCBB9BB005289C0 /* RecipeListWaterfallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListWaterfallModel.m; sourceTree = "<group>"; };
 		1C8B09071CCBBB16005289C0 /* RecipeReferrerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeReferrerModel.h; sourceTree = "<group>"; };
@@ -353,6 +364,11 @@
 		7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfUserInfoHeaderView.xib; sourceTree = "<group>"; };
 		7973373E1CD0DD300068B2BE /* MyselfUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoViewController.h; sourceTree = "<group>"; };
 		7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoViewController.m; sourceTree = "<group>"; };
+		79940ABC1CD1F64900BEDEA5 /* MyselfWorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfWorkCell.h; sourceTree = "<group>"; };
+		79940ABD1CD1F64900BEDEA5 /* MyselfWorkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfWorkCell.m; sourceTree = "<group>"; };
+		79940ABF1CD1F66400BEDEA5 /* MyselfWorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfWorkCell.xib; sourceTree = "<group>"; };
+		79940AC11CD1FA6D00BEDEA5 /* MyselfWorkModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfWorkModel.h; sourceTree = "<group>"; };
+		79940AC21CD1FA6D00BEDEA5 /* MyselfWorkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfWorkModel.m; sourceTree = "<group>"; };
 		79A6C33B1CCFA0D1008A3F23 /* HomeWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeWebViewController.h; sourceTree = "<group>"; };
 		79A6C33C1CCFA0D1008A3F23 /* HomeWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeWebViewController.m; sourceTree = "<group>"; };
 		79A6C33D1CCFA0D1008A3F23 /* HomeWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWebViewController.xib; sourceTree = "<group>"; };
@@ -422,6 +438,8 @@
 				1C031F361CCF512900513257 /* UserInofManager.m */,
 				797337361CD0DC390068B2BE /* MyselfUserInfoModel.h */,
 				797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */,
+				79940AC11CD1FA6D00BEDEA5 /* MyselfWorkModel.h */,
+				79940AC21CD1FA6D00BEDEA5 /* MyselfWorkModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,11 +450,17 @@
 				1C031F391CCF513400513257 /* MyselfHeaderView.h */,
 				1C031F3A1CCF513400513257 /* MyselfHeaderView.m */,
 				1C031F3B1CCF513400513257 /* MyselfHeaderView.xib */,
+				1C1B59F71CD1FFFF00827112 /* MyselfCollectTableViewCell.h */,
+				1C1B59F81CD1FFFF00827112 /* MyselfCollectTableViewCell.m */,
+				1C1B59FA1CD2001200827112 /* MyselfCollectTableViewCell.xib */,
 				1C9A6A061CD0E0BC00162F31 /* MyselfQuitView.h */,
 				1C9A6A071CD0E0BC00162F31 /* MyselfQuitView.m */,
 				1C031F511CCF8F3800513257 /* PraiseAndVisitTableViewCell.h */,
 				1C031F521CCF8F3800513257 /* PraiseAndVisitTableViewCell.m */,
 				1C031F541CCF8F5400513257 /* PraiseAndVisitTableViewCell.xib */,
+				79940ABC1CD1F64900BEDEA5 /* MyselfWorkCell.h */,
+				79940ABD1CD1F64900BEDEA5 /* MyselfWorkCell.m */,
+				79940ABF1CD1F66400BEDEA5 /* MyselfWorkCell.xib */,
 				797337391CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.h */,
 				7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */,
 				7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */,
@@ -451,6 +475,8 @@
 				7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */,
 				1C031F471CCF513E00513257 /* MyselfViewController.h */,
 				1C031F481CCF513E00513257 /* MyselfViewController.m */,
+				1C1B59F41CD1FD6800827112 /* MyselfCollectViewController.h */,
+				1C1B59F51CD1FD6800827112 /* MyselfCollectViewController.m */,
 				1C031F4E1CCF8DCD00513257 /* PraiseAndVisitViewController.h */,
 				1C031F4F1CCF8DCD00513257 /* PraiseAndVisitViewController.m */,
 			);
@@ -1021,6 +1047,7 @@
 				77A8CF761CCB224800A5CB46 /* BaseTableViewCell.xib in Resources */,
 				770FC5BC1CCE1DF10047F5E5 /* CYloginRegisterViewController.xib in Resources */,
 				1CE02C6E1CCEFFC200337539 /* HomeMoreCookBooksModelCell.xib in Resources */,
+				79940AC01CD1F66400BEDEA5 /* MyselfWorkCell.xib in Resources */,
 				773AE9381CCF5B420000A46C /* NewRecipeDetailFootView.xib in Resources */,
 				773AE91D1CCF5A4E0000A46C /* VideoTableViewCell.xib in Resources */,
 				77A8CEBB1CCB042F00A5CB46 /* LaunchScreen.storyboard in Resources */,
@@ -1031,6 +1058,7 @@
 				77A8CF741CCB224800A5CB46 /* BaseCollectionViewCell.xib in Resources */,
 				77A8CEB61CCB042F00A5CB46 /* Main.storyboard in Resources */,
 				1C9A69F81CD09AE700162F31 /* WorksPhotoHeaderView.xib in Resources */,
+				1C1B59FB1CD2001200827112 /* MyselfCollectTableViewCell.xib in Resources */,
 				77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */,
 				773AE91B1CCF5A4E0000A46C /* PlayView.xib in Resources */,
 				773AE93A1CCF5B420000A46C /* NewRecipeDetailStepCell.xib in Resources */,
@@ -1123,6 +1151,7 @@
 				773AE91C1CCF5A4E0000A46C /* VideoTableViewCell.m in Sources */,
 				1CDD52F31CCB71C000A6C837 /* TYCircleView.m in Sources */,
 				773AE9051CCF5A1B0000A46C /* RecipeListWaterfallCell.m in Sources */,
+				1C1B59F61CD1FD6800827112 /* MyselfCollectViewController.m in Sources */,
 				77A8CF0E1CCB082200A5CB46 /* BaseViewController.m in Sources */,
 				773AE9071CCF5A1B0000A46C /* RecipeWaterfallFlowLayout.m in Sources */,
 				1CDD52E11CCB71A500A6C837 /* RecipeViewController.m in Sources */,
@@ -1190,7 +1219,9 @@
 				79EB61B11CCE183800A6E23D /* HomeMoreCookBooksModel.m in Sources */,
 				77A8CEB01CCB042F00A5CB46 /* AppDelegate.m in Sources */,
 				1C9A69EE1CD050C400162F31 /* LatestDevelopmentModelCell.m in Sources */,
+				1C1B59F91CD1FFFF00827112 /* MyselfCollectTableViewCell.m in Sources */,
 				773AE9231CCF5A6B0000A46C /* VideoViewController.m in Sources */,
+				79940AC31CD1FA6D00BEDEA5 /* MyselfWorkModel.m in Sources */,
 				77A8CF731CCB224800A5CB46 /* BaseCollectionViewCell.m in Sources */,
 				79EB61B21CCE183800A6E23D /* HomeNewUserModel.m in Sources */,
 				773AE90F1CCF5A310000A46C /* StepListModel.m in Sources */,
@@ -1203,6 +1234,7 @@
 				773AE8ED1CCF59880000A46C /* Makingsteps.m in Sources */,
 				77A8CEAD1CCB042F00A5CB46 /* main.m in Sources */,
 				77A8CF421CCB0ACE00A5CB46 /* HomeViewController.m in Sources */,
+				79940ABE1CD1F64900BEDEA5 /* MyselfWorkCell.m in Sources */,
 				773AE9061CCF5A1B0000A46C /* NewWorkListWaterfallCell.m in Sources */,
 				773AE8EB1CCF59880000A46C /* NewRecipeDetailModel.m in Sources */,
 			);
@@ -1350,10 +1382,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = Cook/Tools/PrefixHeader.pch;
 				INFOPLIST_FILE = Cook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cook.Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1366,10 +1400,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = Cook/Tools/PrefixHeader.pch;
 				INFOPLIST_FILE = Cook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cook.Cook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

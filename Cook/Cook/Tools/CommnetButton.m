@@ -30,7 +30,7 @@ __weak typeof (button) wkButton = button;
      
     [button.comment setSender:^(NSString * title)
      {
-         NSLog(@"yy = /** %@ */",@"发送通知");
+
          wkButton.comment.TextView.text = nil;
          [wkButton.comment.TextView resignFirstResponder];
          [wkButton.textField resignFirstResponder];

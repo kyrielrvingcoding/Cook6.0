@@ -75,10 +75,10 @@ typedef NS_ENUM(NSInteger, PlayState) {
         //更新播放界面子视图
         [self valueChanged:self.playView.timeSlider forEvent:nil];
         [self refreshPlayViewSubView];
-        NSLog(@"observeValueForKeyPath");
+
     }
     
-    NSLog(@"observeValueForKeyPath%@",change);
+
 }
 
 - (NSMutableArray *)stepArray {
@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     int s = seconds % 60;
     self.playView.remain.text = [NSString stringWithFormat:@"%02d:%02d", (int)m, s];
     [self noIshidden];
-    NSLog(@"refreshPlayViewSubView");
+
 }
 
 //更新播放页面
@@ -202,7 +202,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
 - (void)StepPan:(UIPanGestureRecognizer *)pan {
     CGPoint point = [pan translationInView:self.view];
     
-    NSLog(@"%f",point.x);
+
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
             self.frame = self.playView.stepLabel.frame;
@@ -266,7 +266,7 @@ typedef NS_ENUM(NSInteger, PlayState) {
     button.userInteractionEnabled = NO;
 
 
-    NSLog(@"%f%f%f%f",self.playView.stepView.frame.origin.x, self.playView.stepView.frame.origin.y, self.playView.stepView.frame.size.width, self.playView.stepView.frame.size.height);
+
     if (self.playView.stepView.frame.origin.y < self.view.frame.size.height) {
         self.playView.stepView.userInteractionEnabled = NO;
         CGRect frame = self.playView.stepView.frame;
@@ -300,12 +300,12 @@ typedef NS_ENUM(NSInteger, PlayState) {
     switch (touch.phase)
     {
         case UITouchPhaseBegan:{
-            NSLog(@"%@",[NSThread currentThread]);
+
             if (self.playState == playStatePlaying) {
             [self playAndPruse:self.playView.playButton];
             }
             
-            NSLog(@"=========================停止计时器");
+
             _mark = 1;
 //            [_timer pauseTimer];
             

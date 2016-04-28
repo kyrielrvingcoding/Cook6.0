@@ -10,7 +10,7 @@
 
 @implementation Makingsteps
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    NSLog(@"%@",key);
+
     [super setValue:value forUndefinedKey:key];
 }
 - (void)setValue:(id)value forKey:(NSString *)key {
