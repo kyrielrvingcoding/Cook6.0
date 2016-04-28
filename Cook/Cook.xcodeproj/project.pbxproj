@@ -43,7 +43,6 @@
 		1CDD52F61CCB73CE00A6C837 /* RecipeListWaterfallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDD52F51CCB73CE00A6C837 /* RecipeListWaterfallViewController.m */; };
 		1CDE96B11CCDEBAD00FF56AE /* NewWorkListWaterfallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE96B01CCDEBAD00FF56AE /* NewWorkListWaterfallViewController.m */; };
 		1CDE96B41CCDEC8200FF56AE /* NewWorkWaterfallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE96B31CCDEC8200FF56AE /* NewWorkWaterfallModel.m */; };
-		1CDE96F91CCE11AE00FF56AE /* RecipeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDE96F81CCE11AE00FF56AE /* RecipeSearchBar.m */; };
 		1CE02C681CCEFE2500337539 /* RecipeSearchCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE02C651CCEFE2500337539 /* RecipeSearchCollectionCell.m */; };
 		1CE02C691CCEFE2500337539 /* RecipeSearchReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE02C671CCEFE2500337539 /* RecipeSearchReusableView.m */; };
 		1CE02C6C1CCEFE4200337539 /* RecipeListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE02C6B1CCEFE4200337539 /* RecipeListTableViewController.m */; };
@@ -221,8 +220,6 @@
 		1CDE96B01CCDEBAD00FF56AE /* NewWorkListWaterfallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWorkListWaterfallViewController.m; sourceTree = "<group>"; };
 		1CDE96B21CCDEC8200FF56AE /* NewWorkWaterfallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWorkWaterfallModel.h; sourceTree = "<group>"; };
 		1CDE96B31CCDEC8200FF56AE /* NewWorkWaterfallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWorkWaterfallModel.m; sourceTree = "<group>"; };
-		1CDE96F71CCE11AE00FF56AE /* RecipeSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeSearchBar.h; sourceTree = "<group>"; };
-		1CDE96F81CCE11AE00FF56AE /* RecipeSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeSearchBar.m; sourceTree = "<group>"; };
 		1CE02C641CCEFE2500337539 /* RecipeSearchCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeSearchCollectionCell.h; sourceTree = "<group>"; };
 		1CE02C651CCEFE2500337539 /* RecipeSearchCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeSearchCollectionCell.m; sourceTree = "<group>"; };
 		1CE02C661CCEFE2500337539 /* RecipeSearchReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeSearchReusableView.h; sourceTree = "<group>"; };
@@ -643,8 +640,6 @@
 				77A8CF3D1CCB08D600A5CB46 /* CycleScrollView.m */,
 				1CDD52D31CCB48CE00A6C837 /* LoadingDataAnimation.h */,
 				1CDD52D11CCB48C500A6C837 /* LoadingDataAnimation.m */,
-				1CDE96F71CCE11AE00FF56AE /* RecipeSearchBar.h */,
-				1CDE96F81CCE11AE00FF56AE /* RecipeSearchBar.m */,
 				77A8CF3B1CCB08C500A5CB46 /* URLHeaderDefine.h */,
 				1C9A69FE1CD09BBA00162F31 /* ShowBigImage.h */,
 				1C9A69FF1CD09BBA00162F31 /* ShowBigImage.m */,
@@ -1178,7 +1173,6 @@
 				1CDD52F11CCB71C000A6C837 /* TYCircleCollectionViewLayout.m in Sources */,
 				770FC5CD1CCE1E250047F5E5 /* CYLoginRegisterTextField.m in Sources */,
 				1CDD52DE1CCB718100A6C837 /* RecipeCategoryModel.m in Sources */,
-				1CDE96F91CCE11AE00FF56AE /* RecipeSearchBar.m in Sources */,
 				773AE8EF1CCF59880000A46C /* NewUserModel.m in Sources */,
 				773AE91A1CCF5A4E0000A46C /* PlayVIew.m in Sources */,
 				1C031F401CCF513400513257 /* MyselfHeaderView.m in Sources */,
