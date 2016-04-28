@@ -11,9 +11,10 @@
 #import "RecipeDetailHeaderView.h"
 #import "RecipeDetailFooterView.h"
 #import "RecipeDetailStepCell.h"
-
+#import "MyselfUserInfoViewController.h"
 #import "NewRecipeDetailModel.h"
 #import "NewRecipeDetailFootView.h"
+
 static CGFloat kImageHeight = 200;
 static NSString *headerReuseIdentifier = @"headerReuseIdentifier";
 static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
@@ -91,6 +92,15 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.headerView];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userInfoVC:) name:@"跳转到用户详情界面" object:nil ];
+}
+
+- (void)userInfoVC:(NSNotification *)notification {
+    MyselfUserInfoViewController *userInfoVC = [[MyselfUserInfoViewController alloc] init];
+    NSString *ID = [notification.userInfo objectForKey:@"key"];
+    userInfoVC.ID = ID;
+    [self.navigationController pushViewController:userInfoVC animated:YES];
+    
 }
 
 

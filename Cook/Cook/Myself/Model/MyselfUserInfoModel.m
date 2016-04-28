@@ -10,5 +10,8 @@
 
 @implementation MyselfUserInfoModel
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+    [super setValue:value forUndefinedKey:key];
+}
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "MyselfUserInfoViewController.h"
-#import "MyselfUserInfoHeaderView.h"
 #import "MyselfIDModel.h"
 #import "MyselfUserInfoModel.h"
 #import "HomeMoreCookBooksModelCell.h"
@@ -16,6 +15,7 @@
 #import "NewWorkListWaterfallCell.h"
 #import "MyselfWorkCell.h"
 #import "MyselfWorkModel.h"
+#import "MyselfHeaderView.h"
 
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -43,12 +43,7 @@
 @property (nonatomic, strong) UIButton *cookbookBtn;
 @property (nonatomic, strong) UIButton *collectionBtn;
 @property (nonatomic, strong) UIButton *workBtn;
-
-
-
-
-@property (nonatomic, strong) MyselfUserInfoHeaderView *headerView;
-
+@property (nonatomic, strong) UIView *sectionHeaderView;
 
 @end
 
@@ -125,27 +120,13 @@
             Class class = NSClassFromString(ModelName);
            id model = [[class alloc] init];
             [model setValuesForKeysWithDictionary:IDDic];
-//            NSDictionary *cookbookDic = IDDic[@"cookbook"];
-//            HomeMoreCookBooksModel *cookbook = [[HomeMoreCookBooksModel alloc] init];
-//            [cookbook setValuesForKeysWithDictionary:cookbookDic];
-//            model.cookbook = cookbook;
-//            [self.cookbookArray addObject: cookbook];
-            
-//            NSDictionary *operationDic = IDDic[@"operation"];
-//            HomeNewUserModel *userModel = [[HomeNewUserModel alloc] init];
-//            [userModel setValuesForKeysWithDictionary:operationDic];
-//            model.userModel = userModel;
-//            [self.cookbookArray addObject:model];
             [Array addObject:model];
         }
         if ([ModelName isEqualToString:@"LatestDevelopmentModel"]) {
             self.dataArray = Array;
             [self.tableView reloadData];
         }
-//        [self.collectTableView reloadData];
-//        [self.dynamicTableView reloadData];
-//        [self.collectTableView reloadData];
-//        [self.collectTableView reloadData];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);
     }];
@@ -172,9 +153,7 @@
         [self.userInfoArray addObject:_userInfo];
         
         
-        MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
-        [headerView setDataWithModel:_userInfo];
-        self.tableView.tableHeaderView = headerView;
+        [self createHeaderView];
 //        _collectTableView.tableHeaderView = headerView;
 //        _cookbookTableView.tableHeaderView = headerView;
 //        _workTableView.tableHeaderView = headerView;
@@ -188,6 +167,29 @@
     }];
 }
 
+- (void)createHeaderView {
+    MyselfHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfHeaderView" owner:nil options:nil]lastObject];
+    headerView.headerImageview.layer.cornerRadius = SCREENWIDTH / 10;
+    headerView.headerImageview.layer.masksToBounds = YES;
+    [headerView createBackgroundViewAndHeaderView];
+    headerView.nicknameLabel.text = _userInfo.nickname;
+    
+    [headerView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_userInfo.profileImageUrl]];
+    [headerView.headerImageview sd_setImageWithURL:[NSURL URLWithString:_userInfo.profileImageUrl]];
+
+    headerView.jionTimeLabel.text = [headerView   figuringoutTimesFromNowWith:_userInfo.joinDate];
+    headerView.addressLabel.text = _userInfo.residence;
+    NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  关注", _userInfo.concernCount]];
+    [string1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+    [string1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, 3)];
+    headerView.careLabel.attributedText = string1;
+    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  粉丝", _userInfo.FansCount]];
+    [string2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+    [string2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, 3)];
+    headerView.fansLabel.attributedText = string2;
+    self.tableView.tableHeaderView = headerView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
@@ -197,55 +199,11 @@
     [self requestDataWithType:@"getMyCollects" And:self.collectionArray And:NSStringFromClass([HomeMoreCookBooksModel class])];
     index = 0;
     [self requestDataWithType:@"getMyWorks" And:self.workArray And:NSStringFromClass([MyselfWorkModel class])];
-    
-//    index = 0;
-//    [self createScrollView];
-    
-//    [self requestDataWithType:@"getMyDynamics"];
+
    
 
 }
 
-//- (void)createScrollView {
-//    
-//    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
-//    _rootScrollView.contentSize = CGSizeMake(SCREENWIDTH * 4, SCREENHEIGHT );
-//    _rootScrollView.contentOffset = CGPointMake(0, 0);
-//    [self.view addSubview:_rootScrollView];
-//}
-
-//- (void)createTableViewWithOffestWithScreenWidth:(NSInteger)numberIndex {
-//    numberIndex = index;
-//    _dynamicTableView = [[UITableView alloc] initWithFrame:CGRectMake(numberIndex * SCREENWIDTH,0 , SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _dynamicTableView.dataSource = self;
-//    _dynamicTableView.delegate = self;
-//    _dynamicTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_dynamicTableView];
-//    
-//    MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
-//    [headerView setDataWithModel:_userInfo];
-//    _dynamicTableView.tableHeaderView = headerView;
-
-    
-//    _collectTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 1 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _collectTableView.dataSource = self;
-//    _collectTableView.delegate = self;
-//    _collectTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_collectTableView];
-//    _cookbookTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 2 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _cookbookTableView.dataSource = self;
-//    _cookbookTableView.delegate = self;
-//    _cookbookTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_cookbookTableView];
-//    
-//    _workTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 3 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _workTableView.dataSource = self;
-//    _workTableView.delegate = self;
-//    _workTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_workTableView];
-    
-
-//}
 
 #pragma mark ----- 协议方法 -----
 - (UIButton *)createButtonWithTitle:(NSString *)title imageName:(NSString *)imageName buttonNumber:(NSInteger)buttonNumber action:(SEL)action {
@@ -263,44 +221,64 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
-    _dynamicBtn = [self createButtonWithTitle:@"动态" imageName:nil buttonNumber:0 action:@selector(dynamicBtn:)];
-    _cookbookBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@菜谱",[_userInfoArray[0] recipeCount]] imageName:nil buttonNumber:1 action:@selector(cookbookBtn:)];
-    _collectionBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@收藏",[_userInfoArray[0] collectCount]] imageName:nil buttonNumber:2 action:@selector(collectionBtn:)];
-    _workBtn = [self createButtonWithTitle:[NSString stringWithFormat:@"%@作品",[_userInfoArray[0] workCount]] imageName:nil buttonNumber:3 action:@selector(workBtn:)];
+    if(!_sectionHeaderView) {
+   
+    _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
+    _dynamicBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:0 action:@selector(dynamicBtn:)];
+    _cookbookBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:1 action:@selector(cookbookBtn:)];
+    _collectionBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:2 action:@selector(collectionBtn:)];
+    _workBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:3 action:@selector(workBtn:)];
     
-    [view addSubview:_dynamicBtn];
-    [view addSubview:_cookbookBtn];
-    [view addSubview:_collectionBtn];
-    [view addSubview:_workBtn];
-   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
+    [_sectionHeaderView addSubview:_dynamicBtn];
+    [_sectionHeaderView addSubview:_cookbookBtn];
+    [_sectionHeaderView addSubview:_collectionBtn];
+    [_sectionHeaderView addSubview:_workBtn];
+   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
     _imageView.backgroundColor = [UIColor orangeColor];
-    [view addSubview:_imageView];
-
+    [_sectionHeaderView addSubview:_imageView];
+    }
     
-    return view;
+    [_dynamicBtn setTitle:@"动态" forState:UIControlStateNormal];
+    [_cookbookBtn setTitle:[NSString stringWithFormat:@"%@ 菜谱",[_userInfoArray[0] recipeCount]] forState:UIControlStateNormal];
+    [_collectionBtn setTitle:[NSString stringWithFormat:@"%@ 收藏",[_userInfoArray[0] collectCount]] forState:UIControlStateNormal];
+    [_workBtn setTitle:[NSString stringWithFormat:@"%@ 作品",[_userInfoArray[0] workCount]] forState:UIControlStateNormal];
+    
+    return _sectionHeaderView;
+    
 }
 
 
 - (void)dynamicBtn:(UIButton *)button {
 
     index = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
         self.dataArray = self.dynamicArray;
     [self.tableView reloadData];
     
 }
 - (void)cookbookBtn:(UIButton *)button {
     index = 1;
+    [UIView animateWithDuration:0.3 animations:^{
+        _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
     self.dataArray = self.cookbookArray;
     [self.tableView reloadData];
 }
 - (void)collectionBtn:(UIButton *)button {
     index = 2;
+    [UIView animateWithDuration:0.3 animations:^{
+        _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
     self.dataArray = self.collectionArray;
     [self.tableView reloadData];
 }
 - (void)workBtn:(UIButton *)button {
     index = 3;
+    [UIView animateWithDuration:0.3 animations:^{
+        _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
+    }];
     self.dataArray = self.workArray;
     [self.tableView reloadData];
 }

@@ -14,6 +14,7 @@
 #import "NSURL+AppendingURL.h"
 #import "AVPlayerController.h"
 #import "AppDelegate.h"
+#import "MyselfUserInfoViewController.h"
 static CGFloat kImageHeight = 200;
 static NSString *headerReuseIdentifier = @"headerReuseIdentifier";
 static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
@@ -128,8 +129,8 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
     self.navigationController.navigationBar.translucent = NO;
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.headerView];
+    
 }
-
 - (void)getPlayUrl {
     NSDictionary *parameter2 = @{@"version":@"12.2.1.0",@"machine":@"O382baa3c128b3de78ff6bbcd395b2a27194b01ad",@"device":@"iPhone8%2C1",@"project":self.ID};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

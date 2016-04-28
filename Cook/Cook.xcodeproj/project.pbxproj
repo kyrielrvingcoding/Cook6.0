@@ -112,8 +112,6 @@
 		77F4BFCC1CD0D5B900991545 /* YYCommentControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77F4BFC81CD0D5B900991545 /* YYCommentControl.xib */; };
 		77F4BFCD1CD0D5B900991545 /* CommnetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F4BFCA1CD0D5B900991545 /* CommnetButton.m */; };
 		797337381CD0DC390068B2BE /* MyselfUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */; };
-		7973373C1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */; };
-		7973373D1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */; };
 		797337401CD0DD300068B2BE /* MyselfUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */; };
 		79940ABE1CD1F64900BEDEA5 /* MyselfWorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79940ABD1CD1F64900BEDEA5 /* MyselfWorkCell.m */; };
 		79940AC01CD1F66400BEDEA5 /* MyselfWorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79940ABF1CD1F66400BEDEA5 /* MyselfWorkCell.xib */; };
@@ -348,9 +346,6 @@
 		77F4BFCA1CD0D5B900991545 /* CommnetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommnetButton.m; sourceTree = "<group>"; };
 		797337361CD0DC390068B2BE /* MyselfUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoModel.h; sourceTree = "<group>"; };
 		797337371CD0DC390068B2BE /* MyselfUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoModel.m; sourceTree = "<group>"; };
-		797337391CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoHeaderView.h; sourceTree = "<group>"; };
-		7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoHeaderView.m; sourceTree = "<group>"; };
-		7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyselfUserInfoHeaderView.xib; sourceTree = "<group>"; };
 		7973373E1CD0DD300068B2BE /* MyselfUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfUserInfoViewController.h; sourceTree = "<group>"; };
 		7973373F1CD0DD300068B2BE /* MyselfUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyselfUserInfoViewController.m; sourceTree = "<group>"; };
 		79940ABC1CD1F64900BEDEA5 /* MyselfWorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyselfWorkCell.h; sourceTree = "<group>"; };
@@ -447,9 +442,6 @@
 				79940ABC1CD1F64900BEDEA5 /* MyselfWorkCell.h */,
 				79940ABD1CD1F64900BEDEA5 /* MyselfWorkCell.m */,
 				79940ABF1CD1F66400BEDEA5 /* MyselfWorkCell.xib */,
-				797337391CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.h */,
-				7973373A1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m */,
-				7973373B1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -866,6 +858,7 @@
 		77A8CF611CCB0C2000A5CB46 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				773AE9311CCF5B420000A46C /* RecipeMaterialCell.m */,
 				773AE9241CCF5B420000A46C /* RecipeDetailFooterView.h */,
 				773AE9251CCF5B420000A46C /* RecipeDetailFooterView.m */,
 				773AE9261CCF5B420000A46C /* RecipeDetailFooterView.xib */,
@@ -879,7 +872,6 @@
 				773AE92E1CCF5B420000A46C /* RecipeDetailHeaderView.m */,
 				773AE92F1CCF5B420000A46C /* RecipeDetailHeaderView.xib */,
 				773AE9301CCF5B420000A46C /* RecipeMaterialCell.h */,
-				773AE9311CCF5B420000A46C /* RecipeMaterialCell.m */,
 				773AE9321CCF5B420000A46C /* RecipeMaterialCell.xib */,
 				773AE9331CCF5B420000A46C /* RecipeDetailStepCell.h */,
 				773AE9341CCF5B420000A46C /* RecipeDetailStepCell.m */,
@@ -1023,7 +1015,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7973373D1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.xib in Resources */,
 				1C9A69FA1CD09AE700162F31 /* WorksPhotoCommentCell.xib in Resources */,
 				773AE93C1CCF5B420000A46C /* RecipeDetailHeaderView.xib in Resources */,
 				77A8CF761CCB224800A5CB46 /* BaseTableViewCell.xib in Resources */,
@@ -1138,7 +1129,6 @@
 				773AE93F1CCF5B420000A46C /* RecipeDetailStepCell.m in Sources */,
 				797337381CD0DC390068B2BE /* MyselfUserInfoModel.m in Sources */,
 				1CDD52D21CCB48C500A6C837 /* LoadingDataAnimation.m in Sources */,
-				7973373C1CD0DC4C0068B2BE /* MyselfUserInfoHeaderView.m in Sources */,
 				773AE8F21CCF59AB0000A46C /* NewRecipeDetailController.m in Sources */,
 				1CE02C681CCEFE2500337539 /* RecipeSearchCollectionCell.m in Sources */,
 				773AE9371CCF5B420000A46C /* NewRecipeDetailFootView.m in Sources */,
