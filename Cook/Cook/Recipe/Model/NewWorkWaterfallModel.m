@@ -23,7 +23,6 @@
 - (void)setValue:(id)value forKey:(NSString *)key {
     if ([key isEqualToString:@"comments"]) {
         NSArray *arr = (NSArray *)value;
-        NSLog(@"comments");
         if (arr.count == 0) {
             return;
         }

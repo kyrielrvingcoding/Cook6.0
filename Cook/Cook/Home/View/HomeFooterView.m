@@ -113,7 +113,7 @@
     UIImageView *imageView = (UIImageView *)tap.view;
     CGFloat offset = CGRectGetMaxX(imageView.frame);
     NSInteger i = offset / (self.frame.size.height * 0.3 + 20);
-    NSLog(@"%f %ld", self.frame.size.height * 0.3,    i);
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"厨友推荐" object:_newuserArray[i]];
 }
 

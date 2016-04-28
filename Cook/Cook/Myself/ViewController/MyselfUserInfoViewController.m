@@ -45,6 +45,8 @@
 @property (nonatomic, strong) UIButton *workBtn;
 @property (nonatomic, strong) UIView *sectionHeaderView;
 
+
+
 @end
 
 @implementation MyselfUserInfoViewController
@@ -237,6 +239,7 @@
     _imageView.backgroundColor = [UIColor orangeColor];
     [_sectionHeaderView addSubview:_imageView];
     }
+        
     
     [_dynamicBtn setTitle:@"动态" forState:UIControlStateNormal];
     [_cookbookBtn setTitle:[NSString stringWithFormat:@"%@ 菜谱",[_userInfoArray[0] recipeCount]] forState:UIControlStateNormal];
@@ -249,12 +252,12 @@
 
 
 - (void)dynamicBtn:(UIButton *)button {
-
+    
     index = 0;
     [UIView animateWithDuration:0.3 animations:^{
         _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
     }];
-        self.dataArray = self.dynamicArray;
+    self.dataArray = self.dynamicArray;
     [self.tableView reloadData];
     
 }
@@ -282,6 +285,8 @@
     self.dataArray = self.workArray;
     [self.tableView reloadData];
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
  

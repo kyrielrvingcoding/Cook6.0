@@ -52,7 +52,7 @@
     //添加毛玻璃
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
-    NSLog(@"%f%f",_backGroundImageView.frame.size.height,_backGroundImageView.size.width);
+
     effectView.frame = SCREENBOUNDS;
     [_backGroundImageView addSubview:effectView];
     
@@ -131,7 +131,7 @@
 - (void)LoginToViewController:(HyLoglnButton *)button {
     button.enabled = NO;
     NSString *MD5String = [self passwordByMD5:self.passwordTF.text];
-    NSLog(@"%@",MD5String);
+
     NSString *phoneNumber = self.phoneNumberTF.text;
     NSString *url = [NSString stringWithFormat:@"http://www.xdmeishi.com/index.php?m=mobile&c=index&a=login&account=%@&password=%@",phoneNumber, MD5String];
     [NetWorkrequestManage requestWithType:GET url:url parameters:nil finish:^(NSData *data) {
@@ -264,7 +264,7 @@
         
         [NetWorkrequestManage requestWithType:GET url:urlStr parameters:nil finish:^(NSData *data) {
             NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-            NSLog(@"%@",dicData);
+
             //根据返回的值来判断是否注册成功
             dispatch_async(dispatch_get_main_queue(), ^{
             button.enabled = NO;
@@ -294,7 +294,7 @@
             } else {
                 button.enabled = YES;
                 //跳转
-//                NSLog(@"%@",dicData);
+
                 [UserInofManager conserveSessionID:dicData[@"sessionId"]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshLoginMessage" object:nil];
                 [self dismissViewControllerAnimated:YES completion:nil];

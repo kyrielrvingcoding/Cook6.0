@@ -38,7 +38,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"--------%@", dic);
+
         NSArray *array = dic[@"data"];
         for (NSDictionary *dic in array) {
             HomeNewUserModel *userModel = [[HomeNewUserModel alloc] init];
