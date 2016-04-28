@@ -12,5 +12,6 @@
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, assign) BOOL isLike;
+@property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NewUserModel *UserModel;
 @end

@@ -14,6 +14,9 @@
 #import "PraiseAndVisitViewController.h"
 #import "LatestDevelopmentModel.h"
 #import "NewWorkListWaterfallCell.h"
+#import "MyselfWorkCell.h"
+#import "MyselfWorkModel.h"
+
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     NSInteger index;
@@ -96,9 +99,9 @@
         
         [_tableView registerNib:[UINib nibWithNibName:@"HomeMoreCookBooksModelCell" bundle:nil] forCellReuseIdentifier:@"HomeMoreCookBooksModel"];
         [_tableView registerNib:[UINib nibWithNibName:@"LatestDevelopmentModelCell" bundle:nil] forCellReuseIdentifier:@"LatestDevelopmentModel"];
+        [_tableView registerNib:[UINib nibWithNibName:@"MyselfWorkCell" bundle:nil] forCellReuseIdentifier:@"MyselfWorkModel"];
 //        [_tableView registerNib:[UINib nibWithNibName:@"NewWorkListWaterfallCell" bundle:nil] forCellReuseIdentifier:@"NewWorkWaterfallModel"];
 
-//        [_tableView registerClass:[NewWorkListWaterfallCell class] forCellReuseIdentifier:@"NewWorkWaterfallModel"];
         
     }
     return _tableView;
@@ -188,12 +191,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-
     [self requestData];
     [self requestDataWithType:@"getMyDynamics" And:self.dynamicArray And:NSStringFromClass([LatestDevelopmentModel class])];
     [self requestDataWithType:@"getMyRecipes" And:self.cookbookArray And:NSStringFromClass([HomeMoreCookBooksModel class])];
     [self requestDataWithType:@"getMyCollects" And:self.collectionArray And:NSStringFromClass([HomeMoreCookBooksModel class])];
-//    [self requestDataWithType:@"getMyWorks" And:self.workArray And:NSStringFromClass([NewWorkWaterfallModel class])];
+    index = 0;
+    [self requestDataWithType:@"getMyWorks" And:self.workArray And:NSStringFromClass([MyselfWorkModel class])];
     
 //    index = 0;
 //    [self createScrollView];
@@ -270,45 +273,34 @@
     [view addSubview:_cookbookBtn];
     [view addSubview:_collectionBtn];
     [view addSubview:_workBtn];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
-    imageView.backgroundColor = [UIColor orangeColor];
-    [view addSubview:imageView];
-    _imageView = imageView;
+   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
+    _imageView.backgroundColor = [UIColor orangeColor];
+    [view addSubview:_imageView];
+
     
     return view;
 }
 
+
 - (void)dynamicBtn:(UIButton *)button {
 
     index = 0;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
-    }];
-    self.dataArray = self.dynamicArray;
+        self.dataArray = self.dynamicArray;
     [self.tableView reloadData];
     
 }
 - (void)cookbookBtn:(UIButton *)button {
     index = 1;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
-    }];
     self.dataArray = self.cookbookArray;
     [self.tableView reloadData];
 }
 - (void)collectionBtn:(UIButton *)button {
     index = 2;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
-    }];
     self.dataArray = self.collectionArray;
     [self.tableView reloadData];
 }
 - (void)workBtn:(UIButton *)button {
     index = 3;
-//    [UIView animateWithDuration:0.3 animations:^{
-        self.imageView.frame = CGRectMake(index * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
-//    }];
     self.dataArray = self.workArray;
     [self.tableView reloadData];
 }
@@ -320,10 +312,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(_dynamicBtn){
-//    return SCREENWIDTH / 2 + 63;
+    if(index == 0){
+         return SCREENWIDTH / 2 + 63;
+    }else if (index == 1 || index == 2){
+        return SCREENHEIGHT * 0.15;
+    } else {
+        return SCREENWIDTH / 2;
     }
-    return SCREENHEIGHT * 0.15;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -335,6 +330,7 @@
     id model = self.dataArray[indexPath.row];
     BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([model class]) forIndexPath:indexPath];
     [cell setDataWithModel:self.dataArray[indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

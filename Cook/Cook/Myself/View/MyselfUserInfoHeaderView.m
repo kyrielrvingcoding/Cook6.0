@@ -47,16 +47,7 @@
 }
 
 
-- (void)changeIndicator:(NSInteger)index {
-    
-    for (UIView *view in self.subviews) {
-        if (view.tag < 3000 && view.tag >= 2000) {
-            view.backgroundColor = [UIColor lightGrayColor];
-        }
-    }
-    UIView *view = [self viewWithTag:2000 + index];
-    view.backgroundColor = [UIColor yellowColor];
-}
+
 
 
 
