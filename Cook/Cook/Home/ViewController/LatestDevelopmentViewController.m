@@ -117,6 +117,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LatestDevelopmentModelCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([LatestDevelopmentModel class]) forIndexPath:indexPath];
     [cell setDataWithModel:self.dataArray[indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

@@ -48,8 +48,8 @@
         
         // 创建UIPageControl对象
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.bounds.size.width - 100, self.bounds.size.height - 30, 100, 30)];
-        _pageControl.tintColor = [UIColor whiteColor];
-        _pageControl.tintColor = [UIColor blackColor];
+        _pageControl.currentPageIndicatorTintColor= [UIColor orangeColor];
+        _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
         [self addSubview:_pageControl];
     }
     return self;

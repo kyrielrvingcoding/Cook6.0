@@ -12,12 +12,13 @@
 #import "CommentsModel.h"
 #import "NewUserModel.h"
 @interface NewRecipeDetailModel : BaseModel
+
 @property (nonatomic, copy) NSString *shareId;
 @property (nonatomic, copy) NSNumber *workCount;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *lastModifyDate;
 @property (nonatomic, copy) NSString *uploadDate;
-@property (nonatomic, copy) NSString *commentCount;
+@property (nonatomic, copy) NSNumber *commentCount;
 @property (nonatomic, copy) NSString *imageUrl;
 @property (nonatomic, copy) NSString *taste;
 @property (nonatomic, copy) NSString *cookimgWay;

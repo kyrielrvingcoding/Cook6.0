@@ -16,7 +16,7 @@
 
 - (NSArray *)array {
     if (_array == nil) {
-        _array = [[NSArray alloc] initWithObjects:@"", @"", @"评论菜谱", @"收藏菜谱", @"发布菜谱", @"", @"", @"称赞菜谱", @"发布作品", @"", @"",nil];
+        _array = [[NSArray alloc] initWithObjects:@"", @"", @"评论菜谱", @"收藏菜谱", @"发布菜谱", @"修改菜谱", @"", @"称赞菜谱", @"发布作品", @"", @"",nil];
     }
     return _array;
 }
@@ -51,15 +51,19 @@
         case 8:
             [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.newworkModel.imageUrl]];
             str = model.newworkModel.content;
-            _tagLabel.backgroundColor = [UIColor purpleColor];
+            _tagView.backgroundColor = [UIColor purpleColor];
             break;
         case 2:
             str = model.commentContent;
-            _tagLabel.backgroundColor = [UIColor greenColor];
+            _tagView.backgroundColor = [UIColor greenColor];
             break;
         case 7:
             str = model.recipeModel.name;
-            _tagLabel.backgroundColor = [UIColor redColor];
+            _tagView.backgroundColor = [UIColor redColor];
+            break;
+        case 5:
+            str = model.recipeModel.name;
+            _tagView.backgroundColor = [UIColor yellowColor];
             break;
         default:
             break;
