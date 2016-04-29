@@ -13,5 +13,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *likeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UIButton *commentBtn;
+
+@property (strong, nonatomic) IBOutlet UIButton *likeBtn;
 
 @end
