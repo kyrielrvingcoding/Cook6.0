@@ -17,9 +17,11 @@
 #import "LatestDevelopmentViewController.h"
 #import "NewRecipeDetailController.h"
 
-@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) HomeTableView *hometableView;
+@property (nonatomic, strong) UIView *backView;
+@property (nonatomic, assign) CGFloat alpha;
 
 @end
 
@@ -28,6 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
+    
+    self.alpha = 0.0; // 初始化透明度
+    UIView *backgroundView = [[super.navigationController valueForKey:@"_navigationBar"] valueForKey:@"_backgroundView"];
+    backgroundView.backgroundColor = [UIColor redColor]; // 颜色自己选
+    backgroundView.alpha = self.alpha; // 做渐变最好再设置一下
+    self.backView = backgroundView;
+
+    
+    
     self.view.backgroundColor = [UIColor yellowColor];
     self.navigationController.navigationBar.translucent = NO;
     [LoadingDataAnimation startAnimation];
@@ -104,6 +115,14 @@
     NewRecipeDetailController *detailVC = [[NewRecipeDetailController alloc] init];
     detailVC.ID = [_hometableView.moreCookbooksArray[indexPath.row] ID];
     [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offsetY = _hometableView.contentOffset.y;
+    if (offsetY <= SCREENWIDTH * 0.7 && offsetY >= 0) {
+        
+        NSLog(@"%f", offsetY);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
