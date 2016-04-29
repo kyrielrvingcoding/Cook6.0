@@ -49,6 +49,7 @@
 		1CE02C6C1CCEFE4200337539 /* RecipeListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE02C6B1CCEFE4200337539 /* RecipeListTableViewController.m */; };
 		1CE02C6E1CCEFFC200337539 /* HomeMoreCookBooksModelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE02C6D1CCEFFC200337539 /* HomeMoreCookBooksModelCell.xib */; };
 		770578F21CD241F1008D54E5 /* ClearCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 770578F11CD241F1008D54E5 /* ClearCache.m */; };
+		770578F51CD25E2B008D54E5 /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 770578F41CD25E2B008D54E5 /* UIColor+Color.m */; };
 		770FC5BB1CCE1DF10047F5E5 /* CYloginRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770FC5B91CCE1DF10047F5E5 /* CYloginRegisterViewController.m */; };
 		770FC5BC1CCE1DF10047F5E5 /* CYloginRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770FC5BA1CCE1DF10047F5E5 /* CYloginRegisterViewController.xib */; };
 		770FC5C11CCE1E180047F5E5 /* NetWorkrequestManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 770FC5BE1CCE1E180047F5E5 /* NetWorkrequestManage.m */; };
@@ -235,6 +236,8 @@
 		36F4E54F7372A01C98D875CE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		770578F01CD241F1008D54E5 /* ClearCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearCache.h; sourceTree = "<group>"; };
 		770578F11CD241F1008D54E5 /* ClearCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCache.m; sourceTree = "<group>"; };
+		770578F31CD25E2B008D54E5 /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
+		770578F41CD25E2B008D54E5 /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		770FC5B81CCE1DF10047F5E5 /* CYloginRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYloginRegisterViewController.h; sourceTree = "<group>"; };
 		770FC5B91CCE1DF10047F5E5 /* CYloginRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYloginRegisterViewController.m; sourceTree = "<group>"; };
 		770FC5BA1CCE1DF10047F5E5 /* CYloginRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYloginRegisterViewController.xib; sourceTree = "<group>"; };
@@ -681,6 +684,8 @@
 				77A8CF331CCB08A500A5CB46 /* NSTimer+Addition.m */,
 				773AE8DE1CCF594F0000A46C /* NSURL+AppendingURL.h */,
 				773AE8DF1CCF594F0000A46C /* NSURL+AppendingURL.m */,
+				770578F31CD25E2B008D54E5 /* UIColor+Color.h */,
+				770578F41CD25E2B008D54E5 /* UIColor+Color.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1171,6 +1176,7 @@
 				77A8CF751CCB224800A5CB46 /* BaseTableViewCell.m in Sources */,
 				77A8CF341CCB08A500A5CB46 /* UIBarButtonItem+Extension.m in Sources */,
 				770578F21CD241F1008D54E5 /* ClearCache.m in Sources */,
+				770578F51CD25E2B008D54E5 /* UIColor+Color.m in Sources */,
 				773AE9351CCF5B420000A46C /* RecipeDetailFooterView.m in Sources */,
 				773AE8EC1CCF59880000A46C /* IngredientsModel.m in Sources */,
 				1C9A69E81CD04E7D00162F31 /* LatestDevelopmentViewController.m in Sources */,
