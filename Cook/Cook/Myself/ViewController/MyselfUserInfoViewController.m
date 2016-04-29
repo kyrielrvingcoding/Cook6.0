@@ -16,6 +16,7 @@
 #import "MyselfWorkCell.h"
 #import "MyselfWorkModel.h"
 #import "MyselfHeaderView.h"
+#import "NewRecipeDetailController.h"
 
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -321,6 +322,27 @@
     return 40;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NewRecipeDetailController *recipeDetailVC =
+    [[NewRecipeDetailController alloc] init];
+    
+    if(index == 0){
+        LatestDevelopmentModel *model = self.dataArray[indexPath.row];
+         recipeDetailVC.ID = model.operatorModel.ID;
+    }else if (index == 1 || index == 2){
+       HomeMoreCookBooksModel *model = self.dataArray[indexPath.row];
+         recipeDetailVC.ID = model.ID;
+    } else {
+    MyselfWorkModel
+            *model = self.dataArray[indexPath.row];
+         recipeDetailVC.ID = model.ID;
+    }
+    
+
+    [self.navigationController pushViewController:recipeDetailVC animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

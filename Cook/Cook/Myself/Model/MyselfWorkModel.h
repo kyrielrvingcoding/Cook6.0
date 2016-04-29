@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *commentCount;
 @property (nonatomic, copy) NSString *imageUrl;
 @property (nonatomic, copy) NSString *praiseCount;
-@property (nonatomic, assign) BOOL *isLike;
+@property (nonatomic, assign) BOOL isLike;
 
 @property (nonatomic, strong) HomeNewUserModel *userModel;
 @property (nonatomic, strong) CommentsModel *commentsModel;
