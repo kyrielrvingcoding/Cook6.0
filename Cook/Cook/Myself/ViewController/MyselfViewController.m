@@ -13,7 +13,8 @@
 #import "PraiseAndVisitViewController.h"
 #import "MyselfQuitView.h"
 #import "MyselfCollectViewController.h"
-
+#import "ClearCache.h"
+#import "UIColor+Color.h"
 @interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -105,7 +106,7 @@
    static NSString *str = @"myselfViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:str];
         cell.textLabel.text = array[indexPath.row];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -117,6 +118,10 @@
 //            cell.backgroundColor = [UIColor colorWithRed:195 / 255.0 green:204 / 255.0 blue:239 / 255.0 alpha:1.0];
 //        }
         cell.backgroundColor = [UIColor lightGrayColor];
+    }
+    if (indexPath.row == 3) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
     }
     return cell;
 }
@@ -149,6 +154,24 @@
             NSLog(@"333");
             break;
         case 3:
+        {
+            NSString *cache = [NSString stringWithFormat:@"缓存垃圾大小为%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:cache message:@"是否清除" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *actionN = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
+            UIAlertAction *actionY = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                [ClearCache clearSDWebImageCache];
+                [alert dismissViewControllerAnimated:YES completion:nil];
+                NSLog(@"清除缓存成功");
+                [self showlabel:@"清除缓存成功"];
+            
+            }];
+            
+            [alert addAction:actionN];
+            [alert addAction:actionY];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
             NSLog(@"444");
             break;
         case 4:
@@ -163,6 +186,30 @@
         default:
             break;
     }
+}
+
+
+- (void) showlabel:(NSString *)string {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width,self.view.frame.size.height / 2 , 300, 50)];
+    label.backgroundColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:20];
+    label.layer.masksToBounds = YES;
+    label.layer.cornerRadius = 20;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.center = CGPointMake(SCREENWIDTH / 2.0f, SCREENHEIGHT / 2.0f);
+    label.text = string;
+    label.alpha = 0;
+    [self.view addSubview:label];
+    [UIView animateWithDuration:1.0 animations:^{
+        label.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.0 animations:^{
+            label.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [label removeFromSuperview];
+        }];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

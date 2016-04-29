@@ -12,7 +12,7 @@
 
 //清除网络图片
 + (BOOL)clearSDWebImageCache {
-    [[SDImageCache sharedImageCache] cleanDisk];
+    [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] clearMemory];
     return YES;
 }

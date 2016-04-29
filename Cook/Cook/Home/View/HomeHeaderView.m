@@ -8,6 +8,10 @@
 
 #import "HomeHeaderView.h"
 
+@interface HomeHeaderView ()
+@property (nonatomic, strong) UIView *bckView;
+@end
+
 @implementation HomeHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -70,6 +74,7 @@
         }
         [self createCycleScrollView];
         [self createCategoriesButton];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@", error);
     }];
@@ -122,24 +127,31 @@
 - (UIButton *)createButtonWithTitle:(NSString *)title imageName:(NSString *)imageName buttonNumber:(NSInteger)buttonNumber {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(buttonNumber * SCREENWIDTH / 4, self.height-70, SCREENWIDTH / 4, 30);
+    button.frame = CGRectMake(buttonNumber * SCREENWIDTH / 4 + 2, self.height - 70 + 3, SCREENWIDTH / 4 - 4, 30);
+    button.layer.masksToBounds = YES;
+    button.layer.cornerRadius = 15;
+//    button.backgroundColor  = [UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7];
+    button.backgroundColor = [UIColor whiteColor];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 65)];
 
-    [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 00, 0, 20)];
+//    [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
 
     [self addSubview:button];
     return button;
 }
 
 - (void)createCategoriesButton {
-    
+    self.bckView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height - 70, SCREENWIDTH, 35)];
+    self.bckView.backgroundColor = [UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7];
+    [self addSubview:self.bckView];
     for (int i = 0; i < self.hotCategoriesArray.count; i ++) {
-     
+        NSString *imageName = [NSString stringWithFormat:@"点%d",i + 2];
         HomeHotCategoriesModel *hotCategoriesModel = self.hotCategoriesArray[i];
-        UIButton *button = [self createButtonWithTitle:hotCategoriesModel.name imageName:@"tabbar_home" buttonNumber:i];
+        UIButton *button = [self createButtonWithTitle:hotCategoriesModel.name imageName:imageName buttonNumber:i];
         [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     }
    
@@ -150,14 +162,19 @@
 }
 
 - (void)createHeaderView {
-    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 ,self.height- 30, 10, 30)];
+    UIImageView *leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10 ,self.height- 30, 10, 27)];
     leftImageView.backgroundColor = [UIColor orangeColor];
     leftImageView.layer.cornerRadius = 5;
     leftImageView.layer.masksToBounds = YES;
     [self addSubview:leftImageView];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, self.height- 30, 100, 30)];
     label.text = @"本期推荐";
+    label.font = [UIFont boldSystemFontOfSize:20];
+    UILabel *ButtomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 0.8, self.width, 0.8)];
+    ButtomLabel.backgroundColor = [UIColor colorWithRed:247 Blue:247 Yellor:247];
+    [self addSubview:ButtomLabel];
     [self addSubview:label];
+    self.backgroundColor = [UIColor colorWithRed:247 Blue:247 Yellor:247];
 }
 
 @end

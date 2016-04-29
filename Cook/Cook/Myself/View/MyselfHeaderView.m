@@ -80,7 +80,7 @@
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
     effectView.frame = CGRectMake(0, -200, self.frame.size.width, self.frame.size.height + 220);
-    effectView.alpha = 0.9;
+    effectView.alpha = 1;
     effectView.userInteractionEnabled = YES;
     [_backgroundImageView addSubview:effectView];
     
