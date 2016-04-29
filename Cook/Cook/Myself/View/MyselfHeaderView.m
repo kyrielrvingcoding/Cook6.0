@@ -53,13 +53,15 @@
         _nicknameLabel.text = model.nickname;
         _jionTimeLabel.text = [self figuringoutTimesFromNowWith:model.joinDate];
         _addressLabel.text = model.residence;
-        NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ 关注", model.concernCount]];
-        [string1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 1)];
-        [string1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, 1)];
+        NSString *concernStr = [NSString stringWithFormat:@"%@ 关注", model.concernCount];
+        NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:concernStr];
+        [string1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, concernStr.length - 2)];
+        [string1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, concernStr.length - 2)];
         _careLabel.attributedText = string1;
-        NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ 粉丝", model.FansCount]];
-        [string2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 1)];
-        [string2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, 1)];
+        NSString *fansStr = [NSString stringWithFormat:@"%@ 粉丝", model.FansCount];
+        NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc]initWithString:fansStr];
+        [string2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, fansStr.length - 2)];
+        [string2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, fansStr.length - 2)];
         _fansLabel.attributedText = string2;
     } else {
         _backgroundImageView.image = [UIImage imageNamed:@"test"];

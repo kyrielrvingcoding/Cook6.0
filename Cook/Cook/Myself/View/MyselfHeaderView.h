@@ -26,5 +26,6 @@
 @property (nonatomic, copy) void (^judgeLoginOrQuit)(UIImageView *imageView);
 
 - (void)requestData;
-
+- (NSString *)figuringoutTimesFromNowWith:(NSString *)time;
+- (void)createBackgroundViewAndHeaderView;
 @end

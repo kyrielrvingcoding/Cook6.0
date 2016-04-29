@@ -15,6 +15,7 @@ static NSString *RecipeMaterialCellReuseIdentifier = @"RecipeMaterialCellReuseId
 @interface RecipeDetailHeaderView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) RecipeDetailModel *recipeDetailModel;
 @property (nonatomic, strong) NewRecipeDetailModel *RecipeNewDetailModel;
+@property (nonatomic, strong) NSString *ID;
 @end
 
 @implementation RecipeDetailHeaderView
@@ -88,6 +89,7 @@ static NSString *RecipeMaterialCellReuseIdentifier = @"RecipeMaterialCellReuseId
     if (model == nil) {
         return;
     }
+    _ID = model.userModel.ID;
     self.materialTabelView.dataSource = self;
     self.materialTabelView.delegate = self;
     self.materialTabelView.bounces = NO;
@@ -102,8 +104,16 @@ static NSString *RecipeMaterialCellReuseIdentifier = @"RecipeMaterialCellReuseId
     [self.iconImage sd_setImageWithURL:[NSURL URLWithString:model.userModel.profileImageUrl]];
     self.iconImage.layer.masksToBounds = YES;
     self.iconImage.layer.cornerRadius = 20;
+    self.iconImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userInfo:)];
+    [self.iconImage addGestureRecognizer:tap];
 
 }
+
+- (void)userInfo: (UITapGestureRecognizer *)tap {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"跳转到用户详情界面" object:nil userInfo:@{@"key":_ID}];
+}
+
 - (CGFloat)newReturnHeightByModel:(NewRecipeDetailModel *)model {
     if (model == nil) {
         return 0;

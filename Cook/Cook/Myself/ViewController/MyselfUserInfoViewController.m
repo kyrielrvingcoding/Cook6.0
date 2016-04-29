@@ -7,7 +7,6 @@
 //
 
 #import "MyselfUserInfoViewController.h"
-#import "MyselfUserInfoHeaderView.h"
 #import "MyselfIDModel.h"
 #import "MyselfUserInfoModel.h"
 #import "HomeMoreCookBooksModelCell.h"
@@ -16,38 +15,30 @@
 #import "NewWorkListWaterfallCell.h"
 #import "MyselfWorkCell.h"
 #import "MyselfWorkModel.h"
+#import "MyselfHeaderView.h"
 
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     NSInteger index;
 }
 
-//@property (nonatomic, copy) UIScrollView *rootScrollView;
-//@property (nonatomic, strong) UITableView *cookbookTableView;
-//@property (nonatomic, strong) UITableView *collectTableView;
-//@property (nonatomic, strong) UITableView *workTableView;
-//@property (nonatomic, strong) UITableView *dynamicTableView;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) MyselfHeaderView *headerView;
 
 @property (nonatomic, strong) NSMutableArray *cookbookArray;//菜谱
 @property (nonatomic, strong) NSMutableArray *dynamicArray;//动态
 @property (nonatomic, strong) NSMutableArray *collectionArray;//收藏
 @property (nonatomic, strong) NSMutableArray *workArray;//作品
-
 @property (nonatomic, strong) NSMutableArray *dataArray;//承载
 
 @property (nonatomic, strong) NSMutableArray *userInfoArray;
-@property (nonatomic, strong)  MyselfUserInfoModel *userInfo;
 @property (nonatomic, strong) UIButton *dynamicBtn;
 @property (nonatomic, strong) UIButton *cookbookBtn;
 @property (nonatomic, strong) UIButton *collectionBtn;
 @property (nonatomic, strong) UIButton *workBtn;
 @property (nonatomic, strong) UIView *sectionHeaderView;
 
-
-
-@property (nonatomic, strong) MyselfUserInfoHeaderView *headerView;
 
 
 @end
@@ -91,7 +82,7 @@
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
             _tableView.dataSource = self;
             _tableView.delegate = self;
             _tableView.tableFooterView = [UIView new];
@@ -125,27 +116,13 @@
             Class class = NSClassFromString(ModelName);
            id model = [[class alloc] init];
             [model setValuesForKeysWithDictionary:IDDic];
-//            NSDictionary *cookbookDic = IDDic[@"cookbook"];
-//            HomeMoreCookBooksModel *cookbook = [[HomeMoreCookBooksModel alloc] init];
-//            [cookbook setValuesForKeysWithDictionary:cookbookDic];
-//            model.cookbook = cookbook;
-//            [self.cookbookArray addObject: cookbook];
-            
-//            NSDictionary *operationDic = IDDic[@"operation"];
-//            HomeNewUserModel *userModel = [[HomeNewUserModel alloc] init];
-//            [userModel setValuesForKeysWithDictionary:operationDic];
-//            model.userModel = userModel;
-//            [self.cookbookArray addObject:model];
             [Array addObject:model];
         }
         if ([ModelName isEqualToString:@"LatestDevelopmentModel"]) {
             self.dataArray = Array;
             [self.tableView reloadData];
         }
-//        [self.collectTableView reloadData];
-//        [self.dynamicTableView reloadData];
-//        [self.collectTableView reloadData];
-//        [self.collectTableView reloadData];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);
     }];
@@ -167,25 +144,48 @@
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         
         NSDictionary *datadic = dic[@"data"];
-        _userInfo = [[MyselfUserInfoModel alloc] init];
-        [_userInfo setValuesForKeysWithDictionary:datadic];
-        [self.userInfoArray addObject:_userInfo];
+        MyselfUserInfoModel *userInfo = [[MyselfUserInfoModel alloc] init];
+        [userInfo setValuesForKeysWithDictionary:datadic];
+        [self.userInfoArray addObject:userInfo];
         
+        [self setDataToHeaderViewWithModel:userInfo];
         
-        MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
-        [headerView setDataWithModel:_userInfo];
-        self.tableView.tableHeaderView = headerView;
-//        _collectTableView.tableHeaderView = headerView;
-//        _cookbookTableView.tableHeaderView = headerView;
-//        _workTableView.tableHeaderView = headerView;
-        [self.tableView reloadData];
-//        [self.collectTableView reloadData];
-//        [self.cookbookTableView reloadData];
-//        [self.workTableView reloadData];
 
+        [self.tableView reloadData];
+        [LoadingDataAnimation stopAnimation];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+}
+
+- (void)setDataToHeaderViewWithModel:(MyselfUserInfoModel *)userModel {
+    self.navigationItem.title = userModel.nickname;
+    _headerView.nicknameLabel.text = userModel.nickname;
+    
+    [_headerView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:userModel.profileImageUrl]];
+    [_headerView.headerImageview sd_setImageWithURL:[NSURL URLWithString:userModel.profileImageUrl]];
+    
+    _headerView.jionTimeLabel.text = [_headerView   figuringoutTimesFromNowWith:userModel.joinDate];
+    _headerView.addressLabel.text = userModel.residence;
+    
+    NSString *concernStr = [NSString stringWithFormat:@"%@ 关注", userModel.concernCount];
+    NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:concernStr];
+    [string1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, concernStr.length - 2)];
+    [string1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, concernStr.length - 2)];
+    NSString *fansStr = [NSString stringWithFormat:@"%@ 粉丝", userModel.FansCount];
+    _headerView.careLabel.attributedText = string1;
+    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc]initWithString:fansStr];
+    [string2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, fansStr.length - 2)];
+    [string2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, fansStr.length - 2)];
+    _headerView.fansLabel.attributedText = string2;
+}
+
+- (void)createHeaderView {
+    _headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfHeaderView" owner:nil options:nil]lastObject];
+    _headerView.headerImageview.layer.cornerRadius = SCREENWIDTH / 10;
+    _headerView.headerImageview.layer.masksToBounds = YES;
+    [_headerView createBackgroundViewAndHeaderView];
+    self.tableView.tableHeaderView = _headerView;
 }
 
 - (void)viewDidLoad {
@@ -198,87 +198,45 @@
     index = 0;
     [self requestDataWithType:@"getMyWorks" And:self.workArray And:NSStringFromClass([MyselfWorkModel class])];
     
-//    index = 0;
-//    [self createScrollView];
-    
-//    [self requestDataWithType:@"getMyDynamics"];
-   
+    [self createHeaderView];
+    [LoadingDataAnimation startAnimation];
 
 }
 
-//- (void)createScrollView {
-//    
-//    _rootScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
-//    _rootScrollView.contentSize = CGSizeMake(SCREENWIDTH * 4, SCREENHEIGHT );
-//    _rootScrollView.contentOffset = CGPointMake(0, 0);
-//    [self.view addSubview:_rootScrollView];
-//}
-
-//- (void)createTableViewWithOffestWithScreenWidth:(NSInteger)numberIndex {
-//    numberIndex = index;
-//    _dynamicTableView = [[UITableView alloc] initWithFrame:CGRectMake(numberIndex * SCREENWIDTH,0 , SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _dynamicTableView.dataSource = self;
-//    _dynamicTableView.delegate = self;
-//    _dynamicTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_dynamicTableView];
-//    
-//    MyselfUserInfoHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyselfUserInfoHeaderView" owner:nil options:nil]lastObject];
-//    [headerView setDataWithModel:_userInfo];
-//    _dynamicTableView.tableHeaderView = headerView;
-
-    
-//    _collectTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 1 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _collectTableView.dataSource = self;
-//    _collectTableView.delegate = self;
-//    _collectTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_collectTableView];
-//    _cookbookTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 2 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _cookbookTableView.dataSource = self;
-//    _cookbookTableView.delegate = self;
-//    _cookbookTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_cookbookTableView];
-//    
-//    _workTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 3 * SCREENWIDTH, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
-//    _workTableView.dataSource = self;
-//    _workTableView.delegate = self;
-//    _workTableView.tableFooterView = [UIView new];
-//    [_rootScrollView addSubview:_workTableView];
-    
-
-//}
 
 #pragma mark ----- 协议方法 -----
-- (UIButton *)createButtonWithTitle:(NSString *)title imageName:(NSString *)imageName buttonNumber:(NSInteger)buttonNumber action:(SEL)action {
+- (UIButton *)createButtonWithButtonNumber:(NSInteger)buttonNumber action:(SEL)action {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(buttonNumber * SCREENWIDTH / 4, 0, SCREENWIDTH / 4, 40);
-    [button setTitle:title forState:UIControlStateNormal];
+//    [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+//    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 //    [button setImageEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
+    [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:1.0]];
     
     return button;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if(!_sectionHeaderView) {
-        
-        _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
-        _dynamicBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:0 action:@selector(dynamicBtn:)];
-        _cookbookBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:1 action:@selector(cookbookBtn:)];
-        _collectionBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:2 action:@selector(collectionBtn:)];
-        _workBtn = [self createButtonWithTitle:nil imageName:nil buttonNumber:3 action:@selector(workBtn:)];
-        
-        [_sectionHeaderView addSubview:_dynamicBtn];
-        [_sectionHeaderView addSubview:_cookbookBtn];
-        [_sectionHeaderView addSubview:_collectionBtn];
-        [_sectionHeaderView addSubview:_workBtn];
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
-        _imageView.backgroundColor = [UIColor orangeColor];
-        [_sectionHeaderView addSubview:_imageView];
+   
+    _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
+    _dynamicBtn = [self createButtonWithButtonNumber:0 action:@selector(dynamicBtn:)];
+    _cookbookBtn = [self createButtonWithButtonNumber:1 action:@selector(cookbookBtn:)];
+    _collectionBtn = [self createButtonWithButtonNumber:2 action:@selector(collectionBtn:)];
+    _workBtn = [self createButtonWithButtonNumber:3 action:@selector(workBtn:)];
+    
+    [_sectionHeaderView addSubview:_dynamicBtn];
+    [_sectionHeaderView addSubview:_cookbookBtn];
+    [_sectionHeaderView addSubview:_collectionBtn];
+    [_sectionHeaderView addSubview:_workBtn];
+   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0 * SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5)];
+    _imageView.backgroundColor = [UIColor orangeColor];
+    [_sectionHeaderView addSubview:_imageView];
     }
+        
     
     [_dynamicBtn setTitle:@"动态" forState:UIControlStateNormal];
     [_cookbookBtn setTitle:[NSString stringWithFormat:@"%@ 菜谱",[_userInfoArray[0] recipeCount]] forState:UIControlStateNormal];
