@@ -265,7 +265,7 @@
 		773AE8F01CCF59AB0000A46C /* NewRecipeDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRecipeDetailController.h; sourceTree = "<group>"; };
 		773AE8F11CCF59AB0000A46C /* NewRecipeDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRecipeDetailController.m; sourceTree = "<group>"; };
 		773AE8F31CCF59C10000A46C /* RecipeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeDetailViewController.h; sourceTree = "<group>"; };
-		773AE8F41CCF59C10000A46C /* RecipeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeDetailViewController.m; sourceTree = "<group>"; };
+		773AE8F41CCF59C10000A46C /* RecipeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeDetailViewController.m; path = ../../Video/Controller/RecipeDetailViewController.m; sourceTree = "<group>"; };
 		773AE8FF1CCF5A1B0000A46C /* RecipeListWaterfallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeListWaterfallCell.h; sourceTree = "<group>"; };
 		773AE9001CCF5A1B0000A46C /* RecipeListWaterfallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeListWaterfallCell.m; sourceTree = "<group>"; };
 		773AE9011CCF5A1B0000A46C /* NewWorkListWaterfallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWorkListWaterfallCell.h; sourceTree = "<group>"; };
@@ -629,6 +629,7 @@
 				1CDE96AF1CCDEBAD00FF56AE /* NewWorkListWaterfallViewController.h */,
 				1CDE96B01CCDEBAD00FF56AE /* NewWorkListWaterfallViewController.m */,
 				773AE8F01CCF59AB0000A46C /* NewRecipeDetailController.h */,
+				773AE8F41CCF59C10000A46C /* RecipeDetailViewController.m */,
 				773AE8F11CCF59AB0000A46C /* NewRecipeDetailController.m */,
 				1C9A69FB1CD09B2B00162F31 /* WorksPhotoController.h */,
 				1C9A69FC1CD09B2B00162F31 /* WorksPhotoController.m */,
@@ -853,7 +854,6 @@
 				773AE9201CCF5A6B0000A46C /* VideoViewController.h */,
 				773AE9211CCF5A6B0000A46C /* VideoViewController.m */,
 				773AE8F31CCF59C10000A46C /* RecipeDetailViewController.h */,
-				773AE8F41CCF59C10000A46C /* RecipeDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

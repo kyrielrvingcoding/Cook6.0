@@ -43,22 +43,16 @@
         for (NSDictionary *dataDic in dic[@"data"]) {
             LatestDevelopmentModel *latestModel = [[LatestDevelopmentModel alloc] init];
             [latestModel setValuesForKeysWithDictionary:dataDic];
-//            HomeNewUserModel *operatorModel = [[HomeNewUserModel alloc] init];
-//            [operatorModel setValuesForKeysWithDictionary:dataDic[@"operator"]];
-//            if ([latestModel.actionTag isEqualToString:@"4"]) {
-//                RecipeListWaterfallModel *recipeModel = [[RecipeListWaterfallModel alloc] init];
-//                [recipeModel setValuesForKeysWithDictionary:dataDic[@"cookbook"]];
-//                latestModel.recipeModel = recipeModel;
-//            } else if ([latestModel.actionTag isEqualToString:@"8"]) {
-//                NewWorkWaterfallModel *newworkModel = [[NewWorkWaterfallModel alloc] init];
-//                [newworkModel setValuesForKeysWithDictionary:dataDic[@"work"]];
-//                latestModel.newworkModel = newworkModel;
-//            }
-//            latestModel.operatorModel = operatorModel;
+
             [self.dataArray addObject:latestModel];
         }
         [LoadingDataAnimation stopAnimation];
         [self.tableView reloadData];
+        if ([dic[@"data"] count] == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@", error);
     }];
@@ -99,6 +93,7 @@
 
 - (void)requestRefreshData {
     _pageNum = 1;
+    [self.dataArray removeAllObjects];
     [self requestData];
     [self.tableView.mj_header endRefreshing];
 }
@@ -106,7 +101,6 @@
 - (void)requestMoreData {
     _pageNum ++;
     [self requestData];
-    [self.tableView.mj_footer endRefreshing];
 }
 
 #pragma mark ------tableView的协议方法------

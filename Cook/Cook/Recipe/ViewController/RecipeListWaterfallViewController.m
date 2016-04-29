@@ -48,6 +48,11 @@
             [self.dataArray addObject:model];
         }
         [self.collectionView reloadData];
+        if (array.count == 0) {
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        } else {
+            [self.collectionView.mj_footer endRefreshing];
+        }
         [LoadingDataAnimation stopAnimation];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -63,7 +68,6 @@
 - (void)requestMoreData {
     _pageNum ++;
     [self requestData];
-    [self.collectionView.mj_footer endRefreshing];
 }
 
 - (void)viewDidLoad {

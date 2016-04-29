@@ -62,6 +62,11 @@ static NSString *VideoTableViewCellIdentifier  = @"VideoTableViewCellCellIdentif
             [self.dataArray addObject:model];
         }
         [self.tableView reloadData];
+        if (mainArray.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
         [LoadingDataAnimation stopAnimation];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -78,8 +83,6 @@ static NSString *VideoTableViewCellIdentifier  = @"VideoTableViewCellCellIdentif
 - (void)requestMoreData {
     _page ++;
     [self requestData];
-    NSLog(@"%ld", _page);
-    [self.tableView.mj_footer endRefreshing];
 }
 
 - (void)viewDidLoad {
