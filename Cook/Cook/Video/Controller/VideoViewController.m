@@ -8,16 +8,14 @@
 
 #import "VideoViewController.h"
 #import "RecipeDetailViewController.h"
-
 #import "VideoTableViewCell.h"
-
 #import "VideoModel.h"
-
-
 
 @interface VideoViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, copy) NSString *ID;
 
 @end
 static NSString *VideoTableViewCellIdentifier  = @"VideoTableViewCellCellIdentifier";
@@ -30,17 +28,7 @@ static NSString *VideoTableViewCellIdentifier  = @"VideoTableViewCellCellIdentif
 }
 
 
-- (UITableView *)tableView {
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - 49) style:(UITableViewStylePlain)];
-        [_tableView registerNib:[UINib nibWithNibName:@"VideoTableViewCell" bundle:nil] forCellReuseIdentifier:VideoTableViewCellIdentifier];
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
-        [self.view addSubview:_tableView];
-    }
-    return _tableView ;
-}
-- (void)requestData {
+- (void)requestID {
         NSDictionary *parameter = @{@"version":@"12.2.1.0",@"machine":@"O382baa3c128b3de78ff6bbcd395b2a27194b01ad",@"device":@"iPhone8%2C1"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -52,42 +40,76 @@ static NSString *VideoTableViewCellIdentifier  = @"VideoTableViewCellCellIdentif
         NSDictionary *dic = [array lastObject];
         NSArray *ListArray = dic[@"list"];
         NSDictionary *ListDic = [ListArray lastObject];
-        NSString *ID = ListDic[@"id"];
-        
-       NSDictionary *parameter1 = @{@"version":@"12.2.1.0",@"machine":@"O382baa3c128b3de78ff6bbcd395b2a27194b01ad",@"device":@"iPhone8%2C1",@"id":ID};
-        [manager POST:SUBCLASS_URL parameters:parameter1 progress:^(NSProgress * _Nonnull uploadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSArray *mainArray = responseObject[@"list"];
-            for (NSDictionary *mainDic in mainArray) {
-                VideoModel *model = [[VideoModel alloc] init];
-                [model setValuesForKeysWithDictionary:mainDic];
-                [self.dataArray addObject:model];
-            }
-            [self.tableView reloadData];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
-        
+        _ID = ListDic[@"id"];
+        [self requestData];
+       
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //错误的方法
     }];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.title = @"中华小当家";
-    [self requestData];
-
-    
-    
+- (void)requestData {
+    NSDictionary *parameter1 = @{@"version":@"12.2.1.0",@"machine":@"O382baa3c128b3de78ff6bbcd395b2a27194b01ad",@"device":@"iPhone8%2C1",@"id":_ID,@"page":@(_page)};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [manager POST:SUBCLASS_URL parameters:parameter1 progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *mainArray = responseObject[@"list"];
+        for (NSDictionary *mainDic in mainArray) {
+            VideoModel *model = [[VideoModel alloc] init];
+            [model setValuesForKeysWithDictionary:mainDic];
+            [self.dataArray addObject:model];
+        }
+        [self.tableView reloadData];
+        if (mainArray.count == 0) {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+        [LoadingDataAnimation stopAnimation];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
+- (void)requestRefreshData {
+    [self.dataArray removeAllObjects];
+    _page = 0;
+    [self requestData];
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)requestMoreData {
+    _page ++;
+    [self requestData];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"视频";
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    _page = 0;
+    [self createTableView];
+    [self requestID];
+    [LoadingDataAnimation startAnimation];
+}
+
+- (void)createTableView {
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:(UITableViewStylePlain)];
+    [_tableView registerNib:[UINib nibWithNibName:@"VideoTableViewCell" bundle:nil] forCellReuseIdentifier:VideoTableViewCellIdentifier];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [self.view addSubview:_tableView];
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestRefreshData)];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestMoreData)];
+    _tableView.mj_footer.automaticallyHidden = YES;
+}
 
 #pragma mark ======tableView的代理方法=============
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.tableView.frame.size.height / 4.0;
+    return SCREENHEIGHT / 4.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
