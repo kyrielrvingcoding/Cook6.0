@@ -51,15 +51,15 @@
         case 8:
             [_recipeImageView sd_setImageWithURL:[NSURL URLWithString:model.newworkModel.imageUrl]];
             str = model.newworkModel.content;
-            _tagLabel.backgroundColor = [UIColor purpleColor];
+            _tagView.backgroundColor = [UIColor purpleColor];
             break;
         case 2:
             str = model.commentContent;
-            _tagLabel.backgroundColor = [UIColor greenColor];
+            _tagView.backgroundColor = [UIColor greenColor];
             break;
         case 7:
             str = model.recipeModel.name;
-            _tagLabel.backgroundColor = [UIColor redColor];
+            _tagView.backgroundColor = [UIColor redColor];
             break;
         default:
             break;

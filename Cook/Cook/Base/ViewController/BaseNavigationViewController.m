@@ -27,11 +27,14 @@
     highlightAttribute[NSForegroundColorAttributeName] = [UIColor orangeColor];
     highlightAttribute[NSFontAttributeName] = [UIFont boldSystemFontOfSize:15];
     [item setTitleTextAttributes:highlightAttribute forState:UIControlStateHighlighted];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {

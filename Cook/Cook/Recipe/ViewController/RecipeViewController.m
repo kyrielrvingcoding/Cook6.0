@@ -107,6 +107,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:220 / 255.0 green:1.0 blue:156 / 255.0 alpha:1.0]];
+    
     self.historySearchedArray = [[[NSUserDefaults standardUserDefaults] objectForKey:@"historySearchedArray"] mutableCopy];
     
     [self requestData];
@@ -116,7 +119,6 @@
     _searchBar.placeholder = @"食谱、食材搜索";
     _searchBar.delegate = self;
     self.navigationItem.titleView = _searchBar;
-    self.view.backgroundColor = [UIColor blueColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHistorySearchedArray) name:@"清除历史" object:nil];
 }
 

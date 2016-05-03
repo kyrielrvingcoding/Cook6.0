@@ -129,15 +129,15 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(buttonNumber * SCREENWIDTH / 4 + 2, self.height - 70 + 3, SCREENWIDTH / 4 - 4, 30);
     button.layer.masksToBounds = YES;
-    button.layer.cornerRadius = 15;
+    button.layer.cornerRadius = 13;
 //    button.backgroundColor  = [UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7];
     button.backgroundColor = [UIColor whiteColor];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 65)];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, SCREENWIDTH * 0.04, 0, SCREENWIDTH * 0.15)];
 
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 00, 0, 20)];
+//    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
 //    [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
 
     [self addSubview:button];

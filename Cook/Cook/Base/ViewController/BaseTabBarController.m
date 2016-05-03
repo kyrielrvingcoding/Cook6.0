@@ -32,6 +32,7 @@
     [super viewDidLoad];
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     BaseNavigationViewController *homeNaVC = [[BaseNavigationViewController alloc] initWithRootViewController:homeVC];
+//    homeNaVC.navigationBar.backgroundColor = [UIColor redColor];
     [self addViewController:homeNaVC title:@"首页" imageName:@"tabBar_home" selectedImageName:@"tabBar_home_h"];
     
     RecipeViewController *recipeVC = [[RecipeViewController alloc] init];

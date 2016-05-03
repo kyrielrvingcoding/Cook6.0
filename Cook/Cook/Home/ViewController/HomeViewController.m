@@ -27,23 +27,31 @@
 
 @implementation HomeViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    _backView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, 414, 64)];
+//    _backView.backgroundColor = [UIColor redColor];
+//    [self.navigationController.navigationBar insertSubview:_backView atIndex:0];
+//    NSLog(@"%@", self.navigationController.navigationBar.subviews);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"首页";
     
     self.alpha = 0.0; // 初始化透明度
-    UIView *backgroundView = [[super.navigationController valueForKey:@"_navigationBar"] valueForKey:@"_backgroundView"];
-    backgroundView.backgroundColor = [UIColor redColor]; // 颜色自己选
+    UIView *backgroundView = [[self.navigationController valueForKey:@"_navigationBar"] valueForKey:@"_backgroundView"];
+    backgroundView.backgroundColor = [UIColor whiteColor]; // 颜色自己选
     backgroundView.alpha = self.alpha; // 做渐变最好再设置一下
     self.backView = backgroundView;
-
     
+//    self.navigationController.navigationBar setBackgroundImage:<#(nullable UIImage *)#> forBarMetrics:<#(UIBarMetrics)#>
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
     
-    self.view.backgroundColor = [UIColor yellowColor];
-    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.translucent = YES;
     [LoadingDataAnimation startAnimation];
     
-     _hometableView = [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - 49) style:UITableViewStylePlain];
+     _hometableView = [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
     [self.hometableView registerNib:[UINib nibWithNibName:@"HomeMoreCookBooksModelCell" bundle:nil] forCellReuseIdentifier:@"reuse"];
      _hometableView.delegate = self;
      _hometableView.dataSource = self;
@@ -56,6 +64,11 @@
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTarget:self action:@selector(showLatestDevelopment) imageName:@"navigationBar_new" highlightImageName:@"navigationBar_new_h"];
     
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.backView.alpha = 1.0;
 }
 
 //点击导航栏右按钮
@@ -120,8 +133,14 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = _hometableView.contentOffset.y;
     if (offsetY <= SCREENWIDTH * 0.7 && offsetY >= 0) {
-        
-        NSLog(@"%f", offsetY);
+        self.alpha = offsetY / (SCREENWIDTH * 0.7 - 64);
+        if (_alpha > 1.0) {
+            _alpha = 1.0;
+        }
+//        NSLog(@"%f  %f  %f", offsetY, SCREENWIDTH * 0.7, _alpha);
+        self.backView.alpha = self.alpha;
+    } else {
+        self.backView.alpha = 1.0;
     }
 }
 
