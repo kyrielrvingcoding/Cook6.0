@@ -120,7 +120,9 @@
             [Array addObject:model];
         }
         if ([ModelName isEqualToString:@"LatestDevelopmentModel"]) {
+            
             self.dataArray = Array;
+
             [self.tableView reloadData];
         }
 
@@ -255,7 +257,8 @@
     [UIView animateWithDuration:0.3 animations:^{
         _imageView.frame = CGRectMake(index *SCREENWIDTH / 4, 35, SCREENWIDTH / 4, 5);
     }];
-    self.dataArray = self.dynamicArray;
+    
+     self.dataArray = self.dynamicArray;
     [self.tableView reloadData];
     
 }
@@ -330,7 +333,7 @@
     
     if(index == 0){
         LatestDevelopmentModel *model = self.dataArray[indexPath.row];
-         recipeDetailVC.ID = model.operatorModel.ID;
+         recipeDetailVC.ID = model.recipeModel.ID;
     }else if (index == 1 || index == 2){
        HomeMoreCookBooksModel *model = self.dataArray[indexPath.row];
          recipeDetailVC.ID = model.ID;

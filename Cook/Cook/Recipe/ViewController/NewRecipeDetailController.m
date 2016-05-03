@@ -34,7 +34,7 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
         _headerView.userInteractionEnabled = YES;
         //把headerView方法tableView的上面
         _headerView.frame = CGRectMake(0, -kImageHeight , SCREENWIDTH, kImageHeight + 35);
-        _headerView.backgroundColor = [UIColor grayColor];
+//        _headerView.backgroundColor = [UIColor grayColor];
     }
     return _headerView;
 }
