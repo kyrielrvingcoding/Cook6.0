@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) void (^refreshData)();
+@property (nonatomic, copy) void (^refreshCacheSize)();
 
 @end
 
@@ -112,16 +113,14 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.imageView.image = [UIImage imageNamed:@"ms_caipu_level_un"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        if (indexPath.row % 2 == 0) {
-//             cell.backgroundColor = [UIColor colorWithRed:226 / 255.0 green:233 / 255.0 blue:248/ 255.0 alpha:1.0];
-//        } else {
-//            cell.backgroundColor = [UIColor colorWithRed:195 / 255.0 green:204 / 255.0 blue:239 / 255.0 alpha:1.0];
-//        }
         cell.backgroundColor = [UIColor lightGrayColor];
     }
     if (indexPath.row == 3) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
         cell.detailTextLabel.textColor = [UIColor whiteColor];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
+        self.refreshCacheSize = ^{
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
+        };
     }
     return cell;
 }
@@ -155,6 +154,7 @@
             break;
         case 3:
         {
+            self.refreshCacheSize();
             NSString *cache = [NSString stringWithFormat:@"缓存垃圾大小为%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:cache message:@"是否清除" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *actionN = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:^(UIAlertAction * _Nonnull action) {
@@ -162,6 +162,7 @@
             }];
             UIAlertAction *actionY = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [ClearCache clearSDWebImageCache];
+                self.refreshCacheSize();
                 [alert dismissViewControllerAnimated:YES completion:nil];
                 NSLog(@"清除缓存成功");
                 [self showlabel:@"清除缓存成功"];
@@ -190,7 +191,7 @@
 
 
 - (void) showlabel:(NSString *)string {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width,self.view.frame.size.height / 2 , 300, 50)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREENWIDTH,SCREENHEIGHT / 2 , SCREENWIDTH * 0.8, 50)];
     label.backgroundColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:20];
     label.layer.masksToBounds = YES;

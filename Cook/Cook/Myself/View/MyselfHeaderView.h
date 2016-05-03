@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *careLabel;
 @property (strong, nonatomic) IBOutlet UILabel *fansLabel;
+@property (weak, nonatomic) IBOutlet UILabel *SignatureLabel;
 
 @property (nonatomic, strong) UserLoginModel *userModel;
 

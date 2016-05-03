@@ -21,10 +21,10 @@
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blur];
         effectView.frame = self.bounds;
-        effectView.alpha = 0.7;
+        effectView.alpha = 1.0;
         [self addSubview:effectView];
-        _quitBtn = [self createButtonWithTitle:@"退  出" imageName:@""  frame:CGRectMake(25, 50, 100, 30) action:@selector(quitLogin)];
-        _cancelBtn = [self createButtonWithTitle:@"取  消" imageName:@""  frame:CGRectMake(25, 95, 100, 30) action:@selector(cancel)];
+        _quitBtn = [self createButtonWithTitle:@"退  出"  frame:CGRectMake(25, 50, 100, 30) action:@selector(quitLogin)];
+        _cancelBtn = [self createButtonWithTitle:@"取  消"  frame:CGRectMake(25, 95, 100, 30) action:@selector(cancel)];
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 130, 25)];
         _titleLabel.font = [UIFont boldSystemFontOfSize:18];
         _titleLabel.text = @"是否确认退出？";
@@ -45,13 +45,13 @@
     [self removeFromSuperview];
 }
 
-- (UIButton *)createButtonWithTitle:(NSString *)title imageName:(NSString *)imageName frame:(CGRect)frame action:(SEL)action {
+- (UIButton *)createButtonWithTitle:(NSString *)title frame:(CGRect)frame action:(SEL)action {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+//    [button setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundColor:[UIColor colorWithRed:164.0 / 255.0 green:212.0/ 255.0 blue:206.0 / 255.0 alpha:0.7]];
     button.layer.cornerRadius = 5;

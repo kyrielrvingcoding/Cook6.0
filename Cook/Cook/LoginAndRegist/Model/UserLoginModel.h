@@ -17,5 +17,6 @@
 @property (nonatomic, copy) NSString *residence; //所在地
 @property (nonatomic, strong) NSNumber *concernCount; //关注
 @property (nonatomic, strong) NSNumber *FansCount; //粉丝
+@property (nonatomic, copy) NSString *signature; //签名
 
 @end

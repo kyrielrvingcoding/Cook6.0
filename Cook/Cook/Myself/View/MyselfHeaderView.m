@@ -53,6 +53,9 @@
         _nicknameLabel.text = model.nickname;
         _jionTimeLabel.text = [self figuringoutTimesFromNowWith:model.joinDate];
         _addressLabel.text = model.residence;
+        if (model.signature) {
+            _SignatureLabel.text = model.signature;
+        }
         NSString *concernStr = [NSString stringWithFormat:@"%@ 关注", model.concernCount];
         NSMutableAttributedString *string1 = [[NSMutableAttributedString alloc]initWithString:concernStr];
         [string1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, concernStr.length - 2)];
