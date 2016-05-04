@@ -154,10 +154,10 @@
         case 2: {
             [UMSocialSnsService presentSnsIconSheetView:self
                                 appKey:@"572887aa67e58e0496001520"
-                                shareText:@"兴趣美食"
+                                shareText:@"吃货美食"
                                 shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToQQ, nil]
-                                delegate:self];
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToQQ, UMShareToTencent, UMShareToRenren, UMShareToDouban, UMShareToQzone, UMShareToFacebook, UMShareToTwitter, UMShareToEmail, nil]
+                                delegate:nil];
         }
             break;
         case 3: {
