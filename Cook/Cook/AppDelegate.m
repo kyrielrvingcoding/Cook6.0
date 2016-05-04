@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BaseTabBarController.h"
+#import "UMSocial.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,8 @@
     }
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [UMSocialData setAppKey:@"572887aa67e58e0496001520"];
     
     self.window = [[UIWindow alloc] initWithFrame:SCREENBOUNDS];
     
