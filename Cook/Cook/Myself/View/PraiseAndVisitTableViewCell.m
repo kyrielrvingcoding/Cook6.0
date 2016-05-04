@@ -12,6 +12,7 @@
 @implementation PraiseAndVisitTableViewCell
 
 - (IBAction)cancelPraise:(id)sender {
+    self.praiseOrVisit();
 }
 
 - (void)setDataWithModel:(HomeNewUserModel *)model {

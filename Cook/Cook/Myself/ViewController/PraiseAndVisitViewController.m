@@ -9,6 +9,8 @@
 #import "PraiseAndVisitViewController.h"
 #import "PraiseAndVisitTableViewCell.h"
 #import "HomeNewUserModel.h"
+#import "UserInofManager.h"
+#import "MyselfUserInfoViewController.h"
 
 @interface PraiseAndVisitViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -16,6 +18,7 @@
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, copy) void (^PraiseOrVisit)(NSString *, BOOL);
 
 @end
 
@@ -31,8 +34,13 @@
 - (void)requestData {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    //www.xdmeishi.com/index.php?m=mobile&c=index&a=getMyConcerns&sessionId=f43db4b7e09f0b61717894dd078885d0&type=1&pageSize=15&pageNum=1
-    NSDictionary *parameter = @{@"m":@"mobile", @"c":@"index", @"a":@"getMyConcerns", @"type":_type, @"pageSize":@(15), @"pageNum":@(_pageNum), @"sessionId":@"f43db4b7e09f0b61717894dd078885d0"};
+    NSDictionary *parameter = nil;
+    NSString *sessionId = [UserInofManager getSessionID];
+    if (self.navigationController.viewControllers.count <= 2) {
+        parameter = @{@"m":@"mobile", @"c":@"index", @"a":@"getMyConcerns", @"type":_type, @"pageSize":@(15), @"pageNum":@(_pageNum), @"sessionId":sessionId};
+    } else {
+        parameter = @{@"m":@"mobile", @"c":@"index", @"a":@"getMyConcerns", @"id":_ID, @"type":_type, @"pageSize":@(15), @"pageNum":@(_pageNum), @"sessionId":sessionId};
+    }
     [manager GET:@"http://www.xdmeishi.com/index.php" parameters:parameter progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -49,6 +57,24 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is %@",error);
     }];
+    
+    self.PraiseOrVisit = ^(NSString *modelID, BOOL isPraise) {
+        if (isPraise) {
+            NSDictionary *parameter1 = @{@"m":@"mobile", @"c":@"index", @"a":@"addConcern", @"id":modelID, @"sessionId":sessionId, @"isConcern":@"true"};
+            [manager GET:@"http://www.xdmeishi.com/index.php" parameters:parameter1 progress:^(NSProgress * _Nonnull downloadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"关注");
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            }];
+        } else {
+            NSDictionary *parameter1 = @{@"m":@"mobile", @"c":@"index", @"a":@"addConcern", @"id":modelID, @"sessionId":sessionId, @"isConcern":@"false"};
+            [manager GET:@"http://www.xdmeishi.com/index.php" parameters:parameter1 progress:^(NSProgress * _Nonnull downloadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"取消关注");
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            }];
+        }
+    };
 }
 
 - (void)viewDidLoad {
@@ -66,6 +92,8 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     [_tableView registerNib:[UINib nibWithNibName:@"PraiseAndVisitTableViewCell" bundle:nil] forCellReuseIdentifier:@"PraiseAndVisitTableViewCell"];
+    
+    
 }
 
 #pragma mark -----tableView协议方法-----
@@ -75,18 +103,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PraiseAndVisitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PraiseAndVisitTableViewCell" forIndexPath:indexPath];
-    if ([_type isEqualToString:@"1"]) {
-        [cell.concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+    HomeNewUserModel *userModel = self.dataArray[indexPath.row];
+    [cell.concernBtn setTitle:@"关 注" forState:UIControlStateNormal];
+    if (_ID == nil) {
+        if ([_type isEqualToString:@"1"]) {
+            [cell.concernBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+            cell.praiseOrVisit = ^{
+                _PraiseOrVisit(userModel.ID, NO);
+                [self.dataArray removeObject:userModel];
+                [self.tableView reloadData];
+            };
+        } else {
+            cell.praiseOrVisit = ^{
+                _PraiseOrVisit(userModel.ID, YES);
+            };
+        }
     } else {
-        [cell.concernBtn setTitle:@"关 注" forState:UIControlStateNormal];
+        cell.praiseOrVisit = ^{
+            _PraiseOrVisit(userModel.ID, YES);
+        };
     }
-    [cell setDataWithModel:self.dataArray[indexPath.row]];
+    [cell setDataWithModel:userModel];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MyselfUserInfoViewController *userInfoVC = [[MyselfUserInfoViewController alloc] init];
+    userInfoVC.ID = [self.dataArray[indexPath.row] ID];
+    [self.navigationController pushViewController:userInfoVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

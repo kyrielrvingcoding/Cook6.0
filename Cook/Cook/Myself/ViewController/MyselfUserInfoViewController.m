@@ -17,6 +17,7 @@
 #import "MyselfWorkModel.h"
 #import "MyselfHeaderView.h"
 #import "NewRecipeDetailController.h"
+#import "UserInofManager.h"
 
 @interface MyselfUserInfoViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -39,7 +40,7 @@
 @property (nonatomic, strong) UIButton *collectionBtn;
 @property (nonatomic, strong) UIButton *workBtn;
 @property (nonatomic, strong) UIView *sectionHeaderView;
-
+@property (nonatomic, copy) void (^Praise)();
 
 
 @end
@@ -150,9 +151,7 @@
         MyselfUserInfoModel *userInfo = [[MyselfUserInfoModel alloc] init];
         [userInfo setValuesForKeysWithDictionary:datadic];
         [self.userInfoArray addObject:userInfo];
-        
         [self setDataToHeaderViewWithModel:userInfo];
-        
 
         [self.tableView reloadData];
         [LoadingDataAnimation stopAnimation];
@@ -181,6 +180,30 @@
     [string2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, fansStr.length - 2)];
     [string2 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25] range:NSMakeRange(0, fansStr.length - 2)];
     _headerView.fansLabel.attributedText = string2;
+    
+    self.Praise = ^{
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        NSDictionary *parameter1 = @{@"m":@"mobile", @"c":@"index", @"a":@"addConcern", @"id":userModel.ID, @"sessionId":[UserInofManager getSessionID], @"isConcern":@"true"};
+        [manager GET:@"http://www.xdmeishi.com/index.php" parameters:parameter1 progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"关注成功");
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }];
+    };
+    MyselfHeaderView *myHeaderView = _headerView;
+    myHeaderView.judgeLoginStatus = ^(UILabel *label) {
+        PraiseAndVisitViewController *praiseVC = [[PraiseAndVisitViewController alloc] init];
+        praiseVC.ID = userModel.ID;
+        if (label.tag == 2000) {
+            praiseVC.type = @"1";
+            praiseVC.titleName = @"他的关注";
+        } else {
+            praiseVC.type = @"2";
+            praiseVC.titleName = @"他的粉丝";
+        }
+        [self.navigationController pushViewController:praiseVC animated:YES];
+    };
 }
 
 - (void)createHeaderView {
@@ -203,7 +226,13 @@
     
     [self createHeaderView];
     [LoadingDataAnimation startAnimation];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"+关注" style:UIBarButtonItemStyleDone target:self action:@selector(praise)];
+    
+}
 
+//关注
+- (void)praise {
+    self.Praise();
 }
 
 

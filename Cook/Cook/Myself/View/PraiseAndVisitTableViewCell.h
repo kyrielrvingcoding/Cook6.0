@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *signatureLabel;
 @property (strong, nonatomic) IBOutlet UIButton *concernBtn;
 
+@property (nonatomic, copy) void (^praiseOrVisit)();
+
 @end
