@@ -41,7 +41,7 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - 49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -65,6 +65,7 @@ static NSString *RecipeDetailStepCellReuseIdentifier = @"RecipeDetailStepCell";
             [_model setValuesForKeysWithDictionary:dicData];
             
             [self.headerView sd_setImageWithURL:[NSURL URLWithString:_model.imageUrl]];
+            self.navigationItem.title = _model.name;
             [self.tableView reloadData];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

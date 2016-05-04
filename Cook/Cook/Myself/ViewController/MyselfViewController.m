@@ -15,7 +15,9 @@
 #import "MyselfCollectViewController.h"
 #import "ClearCache.h"
 #import "UIColor+Color.h"
-@interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "UMSocial.h"
+
+@interface MyselfViewController ()<UITableViewDelegate, UITableViewDataSource, UMSocialUIDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) void (^refreshData)();
@@ -149,11 +151,16 @@
             [self.navigationController pushViewController:collectVC animated:YES];
             break;
         }
-        case 2:
-            NSLog(@"333");
+        case 2: {
+            [UMSocialSnsService presentSnsIconSheetView:self
+                                appKey:@"572887aa67e58e0496001520"
+                                shareText:@"兴趣美食"
+                                shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina, UMShareToWechatSession, UMShareToQQ, nil]
+                                delegate:self];
+        }
             break;
-        case 3:
-        {
+        case 3: {
             self.refreshCacheSize();
             NSString *cache = [NSString stringWithFormat:@"缓存垃圾大小为%.2fMB",[ClearCache getSDWebImageCache] / 1024 / 1024];
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:cache message:@"是否清除" preferredStyle:(UIAlertControllerStyleAlert)];
@@ -173,7 +180,6 @@
             [alert addAction:actionY];
             [self presentViewController:alert animated:YES completion:nil];
         }
-            NSLog(@"444");
             break;
         case 4:
             NSLog(@"555");
